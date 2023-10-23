@@ -1,4 +1,4 @@
-# GenomicsWorkshop
+# Genomics Workshop
 
 **TNW Applied Sciences TU Delft**  
 **October 25 - October 26, 2023**  
@@ -110,4 +110,20 @@ L4. GENOME ASSEMBLY AND EVALUATION
 </details>
 
 ---
+## 2. Resources
 
+### Shared document
+
+### Slides
+
+### Manuals
+
+---
+
+## 3. Licensing
+
+#### Authorship
+
+This course was originaly designed by the Carpentries, and it was further developed and delivered by Marcel van den Broek and Raúl A. Ortiz-Merino.
+
+#### Distribution
