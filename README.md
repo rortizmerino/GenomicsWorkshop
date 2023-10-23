@@ -124,6 +124,6 @@ L4. GENOME ASSEMBLY AND EVALUATION
 
 #### Authorship
 
-This course was originaly designed by the Carpentries, and it was further developed and delivered by Marcel van den Broek and Raúl A. Ortiz-Merino.
+This course was originaly designed by the Carpentries, and it was further developed and delivered by Marcel van den Broek and Raúl A. Ortiz-Merino. It also builds on developments made by Manuel Garcia Alvarez and Giordano Lipari.
 
 #### Distribution
