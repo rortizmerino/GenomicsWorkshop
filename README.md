@@ -40,7 +40,10 @@ Unfold the detailed tables of contents in the listing below.
 
 <details> 
 <summary>
-L1. INTRODUCTION AND COMMAND LINE
+L1. INTRODUCTION AND COMMAND LINE  
+
+[Full Lesson1](https://github.com/rortizmerino/GenomicsWorkshop/tree/2310-GW-TNW/Lesson1.md)  
+  
 </summary>
 
 | Episode | Topic |  
@@ -56,7 +59,10 @@ L1. INTRODUCTION AND COMMAND LINE
 
 <details> 
 <summary>
-L2. DATA WRANGLING 1: STEP-WISE PROCESSING
+L2. DATA WRANGLING 1: STEP-WISE PROCESSING  
+
+[Full Lesson2](https://github.com/rortizmerino/GenomicsWorkshop/tree/2310-GW-TNW/Lesson2.md)  
+
 </summary>
 
 | Episode | Topic |  
@@ -74,7 +80,10 @@ L2. DATA WRANGLING 1: STEP-WISE PROCESSING
 
 <details> 
 <summary>
-[L3. DATA WRANGLING 2: SCRIPTING AND AUTOMATION](https://github.com/rortizmerino/GenomicsWorkshop/tree/2310-GW-TNW/Lesson3.md)
+L3. DATA WRANGLING 2: SCRIPTING AND AUTOMATION  
+
+[Full Lesson3](https://github.com/rortizmerino/GenomicsWorkshop/tree/2310-GW-TNW/Lesson3.md)  
+
 </summary>
 
 | Episode | Topic |  
@@ -91,7 +100,11 @@ L2. DATA WRANGLING 1: STEP-WISE PROCESSING
 
 <details> 
 <summary>
-L4. GENOME ASSEMBLY AND EVALUATION
+L4. GENOME ASSEMBLY AND EVALUATION  
+
+[Full Lesson4](https://github.com/rortizmerino/GenomicsWorkshop/tree/2310-GW-TNW/Lesson4.md)  
+
+
 </summary>
 
   
