@@ -32,3 +32,82 @@ Afternoon
 |:------|:------|:------|:------|:------|:------|:------|:------|
 | Lesson 50' | **Break 10'** | Lesson 50' | **Break 10'** | Lesson 50' | **Break 10'** | Lesson 50' | **Closure 10'** |
 
+### Content organisation
+
+The workshop is roughly divided into **4 Lessons**, each given in half a day. Each Lesson is further divided into **Episodes**.  
+
+Unfold the detailed tables of contents in the listing below.  
+
+<details> 
+<summary>
+L1. INTRODUCTION AND COMMAND LINE
+</summary>
+
+| Episode | Topic |  
+|:----|:----|  
+| **1.1** | **General introduction** |  
+| --- |  |  
+| **1.2** | **Connecting to the cloud** |  
+| --- |  |  
+| **1.3** | **Introduction to the command line** |  
+| --- |  |  
+  
+</details>
+
+<details> 
+<summary>
+L2. DATA WRANGLING 1: STEP-WISE PROCESSING
+</summary>
+
+| Episode | Topic |  
+|:----|:----|  
+| **2.1** | **Variant calling introduction** |  
+| --- |  |  
+| **2.2** | **Quality control: fastqc** |  
+| --- |  |  
+| **2.3** | **Trimming: trimmomatic** |  
+| --- |  |  
+| **2.4** | **Variant calling: processing and visualisation** |  
+| --- |  |  
+  
+</details>
+
+<details> 
+<summary>
+L3. DATA WRANGLING 2: SCRIPTING AND AUTOMATION
+</summary>
+
+| Episode | Topic |  
+|:----|:----|  
+| **3.1** | **  ** |  
+| --- |  |  
+| **3.2** | **  ** |  
+| --- |  |  
+| **3.3** | **  ** |  
+| --- |  |  
+  
+  
+</details>
+
+<details> 
+<summary>
+L4. GENOME ASSEMBLY AND EVALUATION
+</summary>
+
+  
+| Episode | Topic |  
+|:----|:----|  
+| **4.1** | ** ** |  
+| --- |  |  
+| **4.2** | **  ** |  
+| --- |  |  
+| **4.3** | **  ** |  
+| --- |  |  
+| **4.4** | **  ** |  
+| --- |  |  
+
+</details>
+</details>
+
+---
+
