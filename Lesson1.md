@@ -209,7 +209,7 @@ which hold information,
 and directories (also called "folders"),
 which hold files or other directories.
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
+Several commands are frequently used to create, inspect, rename, and delete files and directories.  
 
 > ## Preparation Magic
 >
@@ -273,9 +273,6 @@ Let's look at what is in this directory:
 
 ~~~
 $ ls
-~~~
-
-~~~
 sra_metadata  untrimmed_fastq
 ~~~
 
@@ -377,7 +374,6 @@ remember the beginning of a program name.
 $ pw<tab><tab>
 pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
 ~~~
-{: .output}
 
 Displays the name of every program that starts with `pw`. 
 
@@ -621,8 +617,8 @@ navigate amongst them.
 > >  3. No: see previous explanation.
 > >    Also, we did not specify `-F` to display `/` at the end of the directory names.
 > >  4. Yes: `../backup` refers to `/Users/backup`.
-> {: .solution}
-{: .challenge} 
+> 
+
 
 ### Navigational Shortcuts
 
@@ -699,7 +695,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > The root directory is the highest level directory in your file system and contains
 > files that are important for your computer to perform its daily work, but which you usually won't
 > have to interact with directly. In our case,
-> the root directory is two levels above our home directory, so `cd` or `cd ~` will take you to `/home/dcuser`
+> the root directory is two levels above our home directory, so `cd` or `cd ~` will take you to `/home/nfs/YOUR-NETID`
 > and `cd /` will take you to `/`, which is equivalent to `~/../../`. Try not to worry if this is confusing,
 > it will all become clearer with practice.
 > 
@@ -1146,6 +1142,8 @@ you will be asked whether you want to override your permission settings.
 > > -r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
 > > -r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq
 > > ~~~
+> >
+> 
 
 ## Searching files
 
@@ -1184,7 +1182,7 @@ Suppose we want to see how many reads in our file have really bad segments conta
 > type of searching to get a feel for the quality of your sequencing results, however, in your 
 > research you will most likely use a bioinformatics tool that has a built-in program for
 > filtering out low-quality reads. You'll learn how to use one such tool in 
-> [a later lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html).
+> a later lesson.
 > 
 
 Let's search for the string NNNNNNNNNN in the SRR098026 file:
@@ -1239,31 +1237,32 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > > 2. `grep -B1 AAGTT *.fastq`
 > >
 > >     ```
-> > SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
-> > SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
-> > --
-> > SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
-> > SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
-> > --
-> > SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
-> > SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
-> > --
-> > SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
-> > SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
-> > --
-> > SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
-> > SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
-> > --
-> > SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
-> > SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
-> > --
-> > SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
-> > SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
-> > --
-> > SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
-> > SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG
+> >     SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
+> >     SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
+> >     --
+> >     SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
+> >     SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
+> >     --
+> >     SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
+> >     SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
+> >     --
+> >     SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
+> >     SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
+> >     --
+> >     SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
+> >     SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
+> >     --
+> >     SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
+> >     SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
+> >     --
+> >     SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
+> >     SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
+> >     --
+> >     SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
+> >     SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG
 > >     ```
-> > 
+> >
+> 
 
 ## Redirecting output
 
@@ -1332,6 +1331,8 @@ four to get the number of sequences that match our search pattern.
 >> $ wc -l bad_reads.txt
 >> 249
 >> ~~~
+>>
+>
 
 We might want to search multiple FASTQ files for sequences that match our search pattern.
 However, we need to be careful, because each time we use the `>` command to redirect output
@@ -1550,6 +1551,8 @@ $ for filename in *.fastq
 >> > echo ${name}
 >> > done
 >> ~~~
+>>
+>
 
 One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them. 
 
@@ -1575,3 +1578,5 @@ $ for filename in *.txt
 >> > mv ${filename} ${name}.txt
 >> > done
 >> ~~~
+>>
+>
