@@ -872,8 +872,7 @@ return, you will search backwards and move up the file to previous examples of t
 > 
 > > ## Solution
 > > `CAC`
-> {: .solution}
-{: .challenge}
+> 
 
 Remember, the `man` program actually uses `less` internally and
 therefore uses the same commands, so you can search documentation
