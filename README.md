@@ -1,11 +1,11 @@
 # Genomics Workshop
 
-**TNW Applied Sciences TU Delft**  
-**October 25 - October 26, 2023**  
+**<LOCATION>**  
+**<DATE>**  
 
 **09:00 am - 6:00 pm**  
 
-**Instructors**: Marcel van den Broek, Raúl A. Ortiz-Merino  
+**Instructors**: <NAMES>  
 ---
 
 ## General Information
