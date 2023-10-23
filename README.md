@@ -74,7 +74,7 @@ L2. DATA WRANGLING 1: STEP-WISE PROCESSING
 
 <details> 
 <summary>
-L3. DATA WRANGLING 2: SCRIPTING AND AUTOMATION
+[L3. DATA WRANGLING 2: SCRIPTING AND AUTOMATION](https://github.com/rortizmerino/GenomicsWorkshop/tree/2310-GW-TNW/Lesson3.md)
 </summary>
 
 | Episode | Topic |  
