@@ -25,17 +25,17 @@ There are several free options but you should have installed [MobaXterm](https:/
 
    ![](img/mobaXterm_screenshot_1.png)
  
-4. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
+3. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
 
   ![](img/mobaXterm_screenshot_2.png)  
 
-    ```console
-    ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
-    ```
 
-    *Be sure to pay attention to capitalization and spaces*
+```console
+ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
+```
+*Be sure to pay attention to capitalization and spaces*
 
-7. You might receive a security message that looks something like the message below
+4. You might receive a security message that looks something like the message below
 
     ~~~
     The authenticity of host 'student-linux.tudelft.nl (131.180.123.205)' can't be established.
@@ -43,9 +43,9 @@ There are several free options but you should have installed [MobaXterm](https:/
     Are you sure you want to continue connecting (yes/no)?
     ~~~
 
-8. Type `yes` to proceed
+5. Type `yes` to proceed
 
-9. In the final step, you will be asked to provide a login and password
+6. In the final step, you will be asked to provide a login and password
     
     **Note:** When typing your password, it is common in Unix/Linux not see any asterisks (e.g. `****`) or moving cursors. Just continue typing.
 
@@ -61,11 +61,11 @@ Mac and Linux operating systems will already have terminals installed.
 
 2. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
 
-    ```console
-    $ ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
-    ```
+```console
+$ ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
+```
 
-    *Be sure to pay attention to capitalization and spaces*
+*Be sure to pay attention to capitalization and spaces*
 
 3. You might receive a security message that looks something like the message below
 
