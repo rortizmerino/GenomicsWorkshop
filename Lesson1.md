@@ -370,9 +370,10 @@ $ ls ../../
 
 prints the contents of `/home`, which is one level up from your root directory. 
 
+## Exercise 1
 <details>
 <summary>
-## Finding hidden directories
+Finding hidden directories
 
 First navigate to the `shell_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
 find out how to see hidden directories. List the contents of the directory and 
