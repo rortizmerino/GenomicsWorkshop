@@ -1,27 +1,19 @@
+# L1. INTRODUCTION AND COMMAND LINE
 
-In this lesson you will learn how to use the command line interface to move around your file system in the cloud. 
+## 1.2 Connecting to the cloud
 
-## How to access the shell
+In this lesson you will learn how to use the command line interface to move around file systems. 
 
-On a Mac or Linux machine, you can access a shell through a program called Terminal, which is already available
-on your computer. If you're using Windows, you'll need to download a separate program to access the shell.
+* On a Mac or Linux machine, you can access a shell through a program called Terminal, which is already available
+on your computer.
+* If you're using Windows, you'll need to download a separate program to access the shell.
 
-## Important Note
-
-This lesson covers how to log into, and out of, the TU Delft cloud instance.
-
-## Background to TU Delft environment
-
-You will be using TU Delft cloud instances, also referred as remote virtual machines, where you can use all the software and data needed for this workshop. To be able to connect to a cloud instance from outside the TU Delft campus you first have to connect to a Linux bastion host. During this session you will learn how to do this.
-
-## Connection Protocols
+In this lesson we will be using TU Delft cloud instances, also referred as remote virtual machines, where you can use all the software and data needed for this workshop. To be able to connect to a cloud instance from outside the TU Delft campus you first have to connect to a Linux bastion host.
 
 We will use a protocol called Secure Shell (SSH) that, as the name implies, provides you
 with a secure way to use a [shell](http://swcarpentry.github.io/shell-novice). In our case,
 the shell will be running on a remote virtual machine. This protocol is available for every
 operating system, but sometimes requires additional software.
-
-## Logging onto the TU Delft Linux environment
 
 #### Connecting using PC
 
@@ -87,15 +79,16 @@ Mac and Linux operating systems will already have terminals installed.
 
 You should now be connected!
 
-## Logging onto the TU Delft cloud instance
+#### Logging onto the TU Delft cloud instance
 
 1.  Connect to one of the TU Delft cloud instances. You can choose any of the virtual machines indicated on the shared document for the course.
 
     ~~~
     $ ssh REPLACE-WITH-YOUR-NETID@vm0X-bt-edu.tnw.tudelft.nl
     ~~~
-
-2.  You might receive a security message that looks something like the message below
+    *Make sure to replace your netid and the vm number*
+    
+3.  You might receive a security message that looks something like the message below
 
     ~~~
     The authenticity of host 'vm03-bt-edu.tnw.tudelft.nl (131.180.205.58)' can't be established.
@@ -103,15 +96,15 @@ You should now be connected!
     Are you sure you want to continue connecting (yes/no)?
     ~~~
 
-3. Type `yes` to proceed
+4. Type `yes` to proceed
 
-4. In the final step, you will be asked to provide a login and password
+5. In the final step, you will be asked to provide a login and password
     
     **Note:** When typing your password, it is common in Unix/Linux not see any asterisks (e.g. `****`) or moving cursors. Just continue typing.
 
 You should now be connected!
 
-## Logging off a cloud instance
+#### Logging off a cloud instance
 
 Logging off your instance is a lot like logging out of your local computer: it stops any processes
 that are currently running, but doesn't shut the computer off.
@@ -120,13 +113,12 @@ To log off, use the `exit` command in the same terminal you connected with. This
 
 ~~~
 $ exit
-
 logout
 Connection to vm03-bt-edu.tnw.tudelft.nl closed.
 -bash-4.1$
 ~~~
 
-To log off the student-linux bastion, type `exit` again. This will close the connection to the student-linux bastion, and your terminal will go back to showing your local computer.:
+To log off from linux-bastion, type `exit` again. This will close the connection to the linux-bastion, and your terminal will go back to showing your local computer:
 
 ~~~
 $ exit
@@ -134,51 +126,6 @@ logout
 Connection to linux-bastion.tudelft.nl closed.
 $
 ~~~
-
-## Logging back in
-
-Internet connections can be slow or unstable. If you're just browsing the internet, that means you have reload pages, or wait for pictures to load. When you're working in cloud, that means you'll sometimes be suddenly disconnected from your instance when you weren't expecting it. Even on the best internet connections, your signal will occasionally drop, so it's good to know the above SSH steps, and be able to log into the cloud environment without looking up the instructions each time.
-
-In the next section, we'll also show you some programs that you can use to keep your processes going even if your connection drops. But for now, just practice logging on and off a few times.
-
-After logging in, you will see a screen showing something like this: 
-
-~~~
-Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com/
-
-  System information as of Sat Feb  2 00:08:17 UTC 2019
-
-  System load: 0.0                Memory usage: 5%   Processes:       82
-  Usage of /:  29.9% of 98.30GB   Swap usage:   0%   Users logged in: 0
-
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
-
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
-
-597 packages can be updated.
-444 updates are security updates.
-
-New release '16.04.5 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
-
-
-Last login: Fri Feb  1 22:34:53 2019 from c-73-116-43-163.hsd1.ca.comcast.net
-~~~
-
-This provides a lot of information about the remote server that you're logging in to. We're not going to use most of this information for
-our workshop, so you can clear your screen using the `clear` command. 
-
-~~~
-$ clear
-~~~
-
-This will scroll your screen down to give you a fresh screen and will make it easier to read. 
-You haven't lost any of the information on your screen. If you scroll up, you can see everything that has been output to your screen
-up until this point.
 
 ## Loading the course software and material
 
@@ -226,17 +173,13 @@ $
 
 The dollar sign is a **prompt**, which shows us that the shell is waiting for input;
 your shell may use a different character as a prompt and may add information before
-the prompt. When typing commands, either from these lessons or from other sources,
-do not type the prompt, only the commands that follow it.
+the prompt. 
+
+**When typing commands, either from these lessons or from other sources,
+do not type the prompt, only the commands that follow it.**
 
 Let's find out where we are by running a command called `pwd`
-(which stands for "print working directory").
-At any moment, our **current working directory**
-is our current default directory,
-i.e.,
-the directory that the computer assumes we want to run commands in,
-unless we explicitly specify something else.
-Here,
+(which stands for "print working directory"). Here,
 the computer's response is `/home/nfs/YOUR-NETID`,
 which is the top level directory within our cloud system:
 
@@ -252,10 +195,8 @@ which stands for "listing":
 $ ls
 shell_data
 ~~~
+*you might have different file but should at least have `shell_data` now*
 
-`ls` prints the names of the files and directories in the current directory in
-alphabetical order,
-arranged neatly into columns. 
 We'll be working within the `shell_data` subdirectory, and creating new subdirectories, throughout this workshop.  
 
 The command to change locations in our file system is `cd`, followed by a
@@ -377,23 +318,7 @@ pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
 
 Displays the name of every program that starts with `pw`. 
 
-## Summary
-
-We now know how to move around our file system using the command line.
-This gives us an advantage over interacting with the file system through
-a GUI as it allows us to work on a remote server, carry out the same set of operations 
-on a large number of files quickly, and opens up many opportunities for using 
-bioinformatic software that is only available in command line versions. 
-
-In the next few episodes, we'll be expanding on these skills and seeing how 
-using the command line shell enables us to make our workflow more efficient and reproducible.
-
 ## Moving around the file system
-
-We've learned how to use `pwd` to find our current location within our file system. 
-We've also learned how to use `cd` to change locations and `ls` to list the contents
-of a directory. Now we're going to learn some additional commands for moving around 
-within our file system.
 
 Use the commands we've learned so far to navigate to the `shell_data/untrimmed_fastq` directory, if
 you're not already there. 
@@ -427,7 +352,7 @@ to, and `ls` to check that the contents of the directory are correct.
 
 ~~~
 $ pwd
-/home/dcuser/shell_data
+/home/nfs/YOUR-NETID/shell_data
 ~~~
 
 ~~~
