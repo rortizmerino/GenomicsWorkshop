@@ -621,52 +621,36 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > operating system needs to function. In many cases, trying to run commands in root directories will require 
 > special permissions which are not discussed here, so it's best to avoid it and work within your home directory.
 
-> ## Exercise
-> Do each of the following tasks from your current directory using a single
-> `ls` command for each:
-> 
-> 1.  List all of the files in `/usr/bin` that start with the letter 'c'.
-> 2.  List all of the files in `/usr/bin` that contain the letter 'a'. 
-> 3.  List all of the files in `/usr/bin` that end with the letter 'o'.
->
-> Bonus: List all of the files in `/usr/bin` that contain the letter 'a' or the
-> letter 'c'.
-> 
-> Hint: The bonus question requires a Unix wildcard that we haven't talked about
-> yet. Try searching the internet for information about Unix wildcards to find
-> what you need to solve the bonus problem.
-> 
-> > ## Solution
-> > 1. `ls /usr/bin/c*`
-> > 2. `ls /usr/bin/*a*`
-> > 3. `ls /usr/bin/*o`  
-> > Bonus: `ls /usr/bin/*[ac]*`
-> > 
 
-> ## Exercise
-> We can use the command `echo` to see how the wildcard character is interpreted by the shell.
-> 
-> ~~~
-> $ echo *.fastq
-> SRR097977.fastq SRR098026.fastq
-> ~~~
-> 
-> The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
-> `echo *.fastq` is the same as that of `ls *.fastq`.
-> 
-> What would the output look like if the wildcard could *not* be matched? Compare the outputs of
-> `echo *.missing` and `ls *.missing`.
-> 
-> > ## Solution
-> > ~~~
-> > $ echo *.missing
-> > *.missing
-> > ~~~
-> > 
-> > ~~~
-> > $ ls *.missing
-> > ls: cannot access '*.missing': No such file or directory
-> > ~~~
+## Exercise 3
+<details>
+<summary>
+We can use the command `echo` to see how the wildcard character is interpreted by the shell.
+
+~~~
+$ echo *.fastq
+SRR097977.fastq SRR098026.fastq
+~~~
+
+The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
+`echo *.fastq` is the same as that of `ls *.fastq`.
+
+What would the output look like if the wildcard could *not* be matched? Compare the outputs of
+`echo *.missing` and `ls *.missing`.
+
+</summary>
+## Solution
+
+~~~
+$ echo *.missing
+*.missing
+~~~
+
+~~~
+$ ls *.missing
+ls: cannot access '*.missing': No such file or directory
+~~~
+</details>
 
 ## Command History
 
