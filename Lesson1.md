@@ -482,10 +482,10 @@ You will see:
 ~~~
 
 This is the full name of your home directory. This tells you that you
-are in a directory called `dcuser`, which sits inside a directory called
+are in a directory called `nfs/YOUR-NETID`, which sits inside a directory called
 `home` which sits inside the very top directory in the hierarchy. The
 very top of the hierarchy is a directory called `/` which is usually
-referred to as the *root directory*. So, to summarize: `dcuser` is a
+referred to as the *root directory*. So, to summarize: `nfs/YOUR-NETID` is a
 directory in `home` which is a directory in `/`.
 
 Now enter the following command:
@@ -512,42 +512,28 @@ The first uses the absolute path, giving the full address from the home director
 second uses a relative path, giving only the address from the working directory. A full
 path always starts with a `/`. A relative path does not.
 
-A relative path is like getting directions from someone on the street. They tell you to
-"go right at the stop sign, and then turn left on Main Street". That works great if
-you're standing there together, but not so well if you're trying to tell someone how to
-get there from another country. A full path is like GPS coordinates. It tells you exactly
-where something is no matter where you are right now.
+## Exercise 2
+<details>
+<summary>
+Relative path resolution
+ 
+Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+what will `ls ../backup` display?
 
-You can usually use either a full path or a relative path
-depending on what is most convenient. If we are in the home directory,
-it is more convenient to enter the relative path since it
-involves less typing.
+1.  `../backup: No such file or directory`
+2.  `2012-12-01 2013-01-08 2013-01-27`
+3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
+4.  `original pnas_final pnas_sub`
 
-Over time, it will become easier for you to keep a mental note of the
-structure of the directories that you are using and how to quickly
-navigate amongst them.
+![File System for Challenge Questions](../fig/filesystem-challenge.svg)
 
-> ## Relative path resolution
-> 
-> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
-> what will `ls ../backup` display?
-> 
-> 1.  `../backup: No such file or directory`
-> 2.  `2012-12-01 2013-01-08 2013-01-27`
-> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
-> 4.  `original pnas_final pnas_sub`
-> 
-> ![File System for Challenge Questions](../fig/filesystem-challenge.svg)
-> 
-> > ## Solution
-> >  1. No: there *is* a directory `backup` in `/Users`.
-> >  2. No: this is the content of `Users/thing/backup`,
-> >   but with `..` we asked for one level further up.
-> >  3. No: see previous explanation.
-> >    Also, we did not specify `-F` to display `/` at the end of the directory names.
-> >  4. Yes: `../backup` refers to `/Users/backup`.
-> 
-
+</summary>
+## Solution
+1. No: there *is* a directory `backup` in `/Users`.
+2. No: this is the content of `Users/thing/backup`, but with `..` we asked for one level further up.
+3. No: see previous explanation. Also, we did not specify `-F` to display `/` at the end of the directory names.
+4. Yes: `../backup` refers to `/Users/backup`.
+</details>
 
 ### Navigational Shortcuts
 
