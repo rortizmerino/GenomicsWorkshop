@@ -1,32 +1,18 @@
-
-# Background
+# L2. DATA WRANGLING 1: STEP-WISE PROCESSING
 
 We are going to use a long-term sequencing dataset from a population of *Escherichia coli*. 
 
- - **What is *E. coli*?**
-    - *E. coli* are rod-shaped bacteria that can survive under a wide variety of conditions including variable temperatures, nutrient availability, and oxygen levels. Most strains are harmless, but some are associated with food-poisoning. 
-    
-![ [Wikimedia](https://species.wikimedia.org/wiki/Escherichia_coli#/media/File:EscherichiaColi_NIAID.jpg) ](../img/172px-EscherichiaColi_NIAID.jpg)
-
-<!-- https://species.wikimedia.org/wiki/Escherichia_coli#/media/File:EscherichiaColi_NIAID.jpg -->
-
- - **Why is *E. coli* important?**
-    - *E. coli* are one of the most well-studied model organisms in science. As a single-celled organism, *E. coli* reproduces rapidly, typically doubling its population every 20 minutes, which means it can be manipulated easily in experiments. In addition, most naturally occurring strains of *E. coli* are harmless. Most importantly, the genetics of *E. coli* are fairly well understood and can be manipulated to study adaptation and evolution.
-    
-# The Data
+ - *E. coli* are one of the most well-studied model organisms in science. As a single-celled organism, *E. coli* reproduces rapidly, typically doubling its population every 20 minutes, which means it can be manipulated easily in experiments. In addition, most naturally occurring strains of *E. coli* are harmless. Most importantly, the genetics of *E. coli* are fairly well understood and can be manipulated to study adaptation and evolution.  
 
  - The data we are going to use is part of a long-term evolution experiment led by [Richard Lenski](https://en.wikipedia.org/wiki/E._coli_long-term_evolution_experiment).
  
- - The experiment was designed to assess adaptation in *E. coli*. A population was propagated for more than 40,000 generations in a glucose-limited minimal medium (in most conditions glucose is the best carbon source for *E. coli*, providing faster growth than other sugars). This medium was supplemented with citrate, which *E. coli* cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points revealed that spontaneous citrate-using variant (**Cit+**) appeared between 31,000 and 31,500 generations, causing an increase in population size and diversity. In addition, this experiment showed hypermutability in certain regions. Hypermutability is important and can help accelerate adaptation to novel environments, but also can be selected against in well-adapted populations.
- 
- - To see a timeline of the experiment to date, check out this [figure](https://en.wikipedia.org/wiki/E._coli_long-term_evolution_experiment#/media/File:LTEE_Timeline_as_of_May_28,_2016.png), and this paper [Blount et al. 2008: Historical contingency and the evolution of a key innovation in an experimental population of *Escherichia coli*](http://www.pnas.org/content/105/23/7899).
- 
+ - The experiment was designed to assess adaptation in *E. coli*. A population was propagated for more than 40,000 generations in a glucose-limited minimal medium (in most conditions glucose is the best carbon source for *E. coli*, providing faster growth than other sugars). This medium was supplemented with citrate, which *E. coli* cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points revealed that spontaneous citrate-using variant (**Cit+**) appeared between 31,000 and 31,500 generations, causing an increase in population size and diversity. In addition, this experiment showed **hypermutability** in certain regions. Hypermutability is important and can help accelerate adaptation to novel environments, but also can be selected against in well-adapted populations.
  
 ## View the Metadata
 
-We will be working with three sample events from the **Ara-3** strain of this experiment, one from 5,000 generations, one from 15,000 generations, and one from 50,000 generations. The population changed substantially during the course of the experiment, and we will be exploring how (the evolution of a **Cit+** mutant and **hypermutability**) with our variant calling workflow. The metadata file associated with this lesson can be [downloaded directly here](https://raw.githubusercontent.com/mvdb01/wrangling-genomics/gh-pages/files/Ecoli_metadata_composite.csv) or [viewed in Github](https://github.com/mvdb01/wrangling-genomics/blob/gh-pages/files/Ecoli_metadata_composite.csv). If you would like to know details of how the file was created, you can look at [some notes and sources here](https://github.com/datacarpentry/wrangling-genomics/blob/gh-pages/files/Ecoli_metadata_composite_README.md).
+We will be working with three sample events from the **Ara-3** strain of this experiment, one from 5,000 generations, one from 15,000 generations, and one from 50,000 generations.  
 
-
+The population changed substantially during the course of the experiment, and we will be exploring how (the evolution of a **Cit+** mutant and **hypermutability**) with our variant calling workflow. The metadata file associated with this lesson can be [downloaded directly here](https://raw.githubusercontent.com/mvdb01/wrangling-genomics/gh-pages/files/Ecoli_metadata_composite.csv) or [viewed in Github](https://github.com/mvdb01/wrangling-genomics/blob/gh-pages/files/Ecoli_metadata_composite.csv). If you would like to know details of how the file was created, you can look at [some notes and sources here](https://github.com/datacarpentry/wrangling-genomics/blob/gh-pages/files/Ecoli_metadata_composite_README.md).
 
 This metadata describes information on the *Ara-3* clones and the columns represent:
 
@@ -46,25 +32,7 @@ This metadata describes information on the *Ara-3* clones and the columns repres
 | cit              | citrate-using mutant status		|
 
   
-> ## Challenge
-> 
-> Based on the metadata, can you answer the following questions?
-> 
-> 1. How many different generations exist in the data?
-> 2. How many rows and how many columns are in this data?
-> 3. How many citrate+ mutants have been recorded in **Ara-3**?
-> 4. How many hypermutable mutants have been recorded in **Ara-3**?
->
-> > ## Solution
->> 
-> > 1. 25 different generations
-> > 2. 62 rows, 12 columns
-> > 3. 10 citrate+ mutants
-> > 4. 6 hypermutable mutants
-> 
-
-
-# Bioinformatic workflows
+# Bioinformatic workflow
 
 When working with high-throughput sequencing data, the raw reads you get off of the sequencer will need to pass
 through a number of  different tools in order to generate your final desired output. The execution of this set of
@@ -92,15 +60,14 @@ built under the assumption that the data will be provided in a specific format.
 
 Often times, the first step in a bioinformatic workflow is getting the data you want to work with onto a computer where you can work with it. If you have outsourced sequencing of your data, the sequencing center will usually provide you with a link that you can use to download your data. Today we will be working with publicly available sequencing data.
 
-We are studying a population of *Escherichia coli* (designated Ara-3), which were propagated for more than 50,000 generations in a glucose-limited minimal medium. We will be working with three samples from this experiment, one from 5,000 generations, one from 15,000 generations, and one from 50,000 generations. The population changed substantially during the course of the experiment, and we will be exploring how with our variant calling workflow. 
-
 The data are paired-end, so we will download two files for each sample. We will use the [European Nucleotide Archive](https://www.ebi.ac.uk/ena) to get our data. The ENA "provides a comprehensive record of the world's nucleotide sequencing information, covering raw sequencing data, sequence assembly information and functional annotation." The ENA also provides sequencing data in the fastq format, an important format for sequencing reads that we will be learning about today. 
 
 To download the data, run the commands below. 
 
 Here we are using the `-p` option for `mkdir`. This option allows `mkdir` to create the new directory, even if one of the parent directories doesn't already exist. It also supresses errors if the directory already exists, without overwriting that directory. 
 
-It will take about 15 minutes to download the files.
+It will take about 15 minutes to download the files.  
+
 ~~~
 mkdir -p ~/dc_workshop/data/untrimmed_fastq/
 cd ~/dc_workshop/data/untrimmed_fastq
@@ -206,7 +173,7 @@ CCCFFFFFGHHHHJIJJJJIJJJIIJJJJIIIJJGFIIIJEDDFEGGJIFHHJIJJDECCGGEGIIJFHFFFACD:BBBD
 we can now see that there is a range of quality scores, but that the end of the sequence is
 very poor (`#` = a quality score of 2). 
 
-> ## Exercise
+> ## Practice
 > 
 > What is the last read in the `SRR2584863_1.fastq ` file? How confident
 > are you in this read? 
@@ -227,6 +194,18 @@ very poor (`#` = a quality score of 2).
 >> in just a moment.
 >> 
 > 
+
+All Bioinformatics software that will be used during this course is all ready installed but we need tell the system where they are by loading the environment.
+
+~~~
+$ source /mnt/linapps/conda3loader
+~~~
+
+And activate it:
+
+~~~
+$ conda activate DCW
+~~~
 
 At this point, lets validate that all the relevant tools are installed. 
 
@@ -397,7 +376,7 @@ We will now assess the quality of the reads that we downloaded. First, make sure
 $ cd ~/dc_workshop/data/untrimmed_fastq/ 
 ~~~
 
-> ## Exercise
+> ## Exercise 1
 > 
 >  How big are the files?
 > (Hint: Look at the options for the `ls` command to see how to show
@@ -519,7 +498,7 @@ $ mkdir -p ~/Desktop/fastqc_html
 Now we can transfer our HTML files to our local computer using `scp`.
 
 ~~~
-$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/results/fastqc_untrimmed_reads/*.html ~/Desktop/fastqc_html
+$ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/results/fastqc_untrimmed_reads/*.html ~/Desktop/fastqc_html
 ~~~
 
 As a reminder, the first part
@@ -552,7 +531,7 @@ Depending on your system,
 you should be able to select and open them all at once via a right click menu
 in your file browser.
 
-> ## Exercise
+> ## Practice
 > 
 > Discuss your results with a neighbor. Which sample(s) looks the best
 > in terms of per base sequence quality? Which sample(s) look the
@@ -737,7 +716,7 @@ $ mkdir -p ~/dc_workshop/docs/
 $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt 
 ~~~
 
-> ## Exercise
+> ## Practice
 > 
 > Which samples failed at least one of FastQC's quality tests? What
 > test(s) did those samples fail?
@@ -766,8 +745,6 @@ $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 >> 
 >
 
-# Other notes  -- Optional 
-
 > ## Quality Encodings Vary
 >
 > Although we've used a particular quality encoding system to demonstrate interpretation of 
@@ -780,20 +757,6 @@ $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 > used to generate your data, so that you can tell your quality control program which encoding
 > to use. If you choose the wrong encoding, you run the risk of throwing away good reads or 
 > (even worse) not throwing away bad reads!
-
-
-> ## Same Symbols, Different Meanings
->
-> Here we see `>` being used as a shell prompt, whereas `>` is also
-> used to redirect output.
-> Similarly, `$` is used as a shell prompt, but, as we saw earlier,
-> it is also used to ask the shell to get the value of a variable.
->
-> If the *shell* prints `>` or `$` then it expects you to type something,
-> and the symbol is a prompt.
->
-> If *you* type `>` or `$` yourself, it is an instruction from you that
-> the shell should redirect output or get the value of a variable.
 
 
 # Cleaning Reads
@@ -890,8 +853,16 @@ In this example, we've told Trimmomatic:
 > Some of the commands we ran in this lesson are long! When typing a long 
 > command into your terminal, you can use the `\` character
 > to separate code chunks onto separate lines. This can make your code more readable.
-{: .callout}
-
+> Here we see `>` being used as a shell prompt, whereas `>` is also
+> used to redirect output.
+> Similarly, `$` is used as a shell prompt, but, as we saw earlier,
+> it is also used to ask the shell to get the value of a variable.
+>
+> If the *shell* prints `>` or `$` then it expects you to type something,
+> and the symbol is a prompt.
+>
+> If *you* type `>` or `$` yourself, it is an instruction from you that
+> the shell should redirect output or get the value of a variable.
 
 
 ## Running Trimmomatic
@@ -922,6 +893,7 @@ $ trimmomatic PE SRR2589044_1.fastq.gz SRR2589044_2.fastq.gz \
                 SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
 ~~~
 
+Output:
 ~~~
 TrimmomaticPE: Started with arguments:
  SRR2589044_1.fastq.gz SRR2589044_2.fastq.gz SRR2589044_1.trim.fastq.gz SRR2589044_1un.trim.fastq.gz SRR2589044_2.trim.fastq.gz SRR2589044_2un.trim.fastq.gz SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15
@@ -937,7 +909,7 @@ Input Read Pairs: 1107090 Both Surviving: 885220 (79.96%) Forward Only Surviving
 TrimmomaticPE: Completed successfully
 ~~~
 
-> ## Exercise
+> ## Practice
 >
 > Use the output from your Trimmomatic command to answer the
 > following questions.
@@ -1014,21 +986,6 @@ SRR2584863_2.trim.fastq.gz    SRR2584866_2un.trim.fastq.gz
 SRR2584863_2un.trim.fastq.gz  SRR2589044_1.fastq.gz
 ~~~
 
-> ## Exercise
-> We trimmed our fastq files with Nextera adapters, 
-> but there are other adapters that are commonly used.
-> What other adapter files came with Trimmomatic?
->
->
->> ## Solution
->> ~~~
->> $ ls /mnt/linapps/conda3/pkgs/trimmomatic-0.38-0/share/trimmomatic-0.38-0/adapters/
->> NexteraPE-PE.fa  TruSeq2-SE.fa    TruSeq3-PE.fa
->> TruSeq2-PE.fa    TruSeq3-PE-2.fa  TruSeq3-SE.fa
->> ~~~
->>
->
-
 We've now completed the trimming and filtering steps of our quality
 control process! Before we move on, let's move our trimmed FASTQ files
 to a new subdirectory within our `data/` directory.
@@ -1045,41 +1002,41 @@ SRR2584863_2.trim.fastq.gz    SRR2584866_2.trim.fastq.gz    SRR2589044_2.trim.fa
 SRR2584863_2un.trim.fastq.gz  SRR2584866_2un.trim.fastq.gz  SRR2589044_2un.trim.fastq.gz
 ~~~
 
-> ## Bonus Exercise (Advanced)
->
-> Now that our samples have gone through quality control, they should perform
-> better on the quality tests run by FastQC. Go ahead and re-run
-> FastQC on your trimmed FASTQ files and visualize the HTML files
-> to see whether your per base sequence quality is higher after
-> trimming.
->
->> ## Solution
->>
->> In your cloud terminal window do:
->>
->> ~~~
->> $ fastqc ~/dc_workshop/data/trimmed_fastq/*.fastq*
->> ~~~
->>
->> In a new tab (local computer) in your terminal do:
->>
->> ~~~
->> $ mkdir ~/Desktop/fastqc_html/trimmed
->> $ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/data/trimmed_fastq/*.html ~/Desktop/fastqc_html/trimmed
->> ~~~
->> 
->> Then take a look at the html files in your browser.
->> 
->>
->> After trimming and filtering, our overall quality is much higher, 
->> we have a distribution of sequence lengths, and more samples pass 
->> adapter content. However, quality trimming is not perfect, and some
->> programs are better at removing some sequences than others. Because our
->> sequences still contain 3' adapters, it could be important to explore
->> other trimming tools like [cutadapt](http://cutadapt.readthedocs.io/en/stable/) to remove these, depending on your
->> downstream application. Trimmomatic did pretty well though, and its performance
->> is good enough for our workflow.
-> 
+## Exercise 2
+<details>
+<summary>
+Now that our samples have gone through quality control, they should perform
+better on the quality tests run by FastQC. Go ahead and re-run
+FastQC on your trimmed FASTQ files and visualize the HTML files
+to see whether your per base sequence quality is higher after
+trimming.
+
+</summary>
+## Solution
+In your cloud terminal window do:
+
+~~~
+$ fastqc ~/dc_workshop/data/trimmed_fastq/*.fastq*
+~~~
+
+In a new tab (local computer) in your terminal do:
+
+~~~
+$ mkdir ~/Desktop/fastqc_html/trimmed
+$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/data/trimmed_fastq/*.html ~/Desktop/fastqc_html/trimmed
+~~~
+ 
+Then take a look at the html files in your browser.
+ 
+After trimming and filtering, our overall quality is much higher, 
+we have a distribution of sequence lengths, and more samples pass 
+adapter content. However, quality trimming is not perfect, and some
+programs are better at removing some sequences than others. Because our
+sequences still contain 3' adapters, it could be important to explore
+other trimming tools like [cutadapt](http://cutadapt.readthedocs.io/en/stable/) to remove these, depending on your
+downstream application. Trimmomatic did pretty well though, and its performance
+is good enough for our workflow.
+</details> 
 
 We mentioned before that we are working with files from a long-term evolution study of an *E. coli* population (designated Ara-3). Now that we have looked at our data to make sure that it is high quality, and removed low-quality base calls, we can perform variant calling to see how the population changed over time. We care how this population changed relative to the original population, *E. coli* strain REL606. Therefore, we will align each of our samples to the *E. coli* REL606 reference genome, and see what differences exist in our reads versus the genome.
 
@@ -1109,7 +1066,7 @@ $ mkdir -p data/ref_genome
 $ cp /mnt/linapps/carpentry/ref_genome/ecoli_rel606.* data/ref_genome/
 ~~~
 
-> ## Exercise 
+> ## Practice 
 > 
 > We copied this file to `data/ref_genome/ecoli_rel606.fasta`. 
 > What is the real name of the genome? 
@@ -1408,7 +1365,7 @@ For our file, the metrics presented are GT:PL:GQ.
 The Broad Institute's [VCF guide](https://www.broadinstitute.org/gatk/guide/article?id=1268) is an excellent place
 to learn more about the VCF file format.
 
-> ## Exercise
+> ## Practice
 > 
 > Use the `grep` and `wc` commands you've learned to assess how many variants are in the vcf file. 
 >
@@ -1464,7 +1421,7 @@ $ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/data/ref_genome/ecoli_re
 $ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/results/vcf/SRR2584866_final_variants.vcf ~/Desktop/files_for_igv
 ~~~
 
-You will need to type the password for your AWS instance each time you call `scp`. 
+You will need to type the password for your NETID each time you call `scp`. 
 
 Next, we need to open the IGV software. If you haven't done so already, you can download IGV from the [Broad Institute's software page](https://www.broadinstitute.org/software/igv/download), double-click the `.zip` file
 to unzip it, and then drag the program into your Applications folder. 
@@ -1495,17 +1452,6 @@ time consuming and error-prone, and would become impossible as we gathered more 
 already know the tools we need to use to automate this workflow and run it on as many files as we want using a
 single line of code. Those tools are: wildcards, for loops, and bash scripts. We'll use all three in the next 
 lesson. 
-
-> ## Installing Software
-> 
-> It's worth noting that all of the software we are using for
-> this workshop has been pre-installed on our remote computer. 
-> This saves us a lot of time - installing software can be a 
-> time-consuming and frustrating task - however, this does mean that
-> you won't be able to walk out the door and start doing these
-> analyses on your own computer. You'll need to install 
-> the software first. Look at the [setup instructions](http://www.datacarpentry.org/wrangling-genomics/setup.html) for more information 
-> on installing these software packages.
 
 > ## BWA Alignment options
 > BWA consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence 
