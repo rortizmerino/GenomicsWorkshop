@@ -41,7 +41,7 @@ tools in a specified order is commonly referred to as a *workflow* or a *pipelin
 An example of the workflow we will be using for our variant calling analysis is provided below with a brief
 description of each step. 
 
-![workflow](../img/variant_calling_workflow.png)
+![workflow](img/variant_calling_workflow.png)
 
 
 1. Quality control - Assessing quality using FastQC
@@ -107,7 +107,7 @@ $ gunzip SRR2584863_1.fastq.gz
 
 We will now assess the quality of the sequence reads contained in our fastq files. 
 
-![workflow_qc](../img/var_calling_workflow_qc.png)
+![workflow_qc](img/var_calling_workflow_qc.png)
 ## Details on the FASTQ format
 
 Although it looks complicated (and it is), we can understand the
@@ -347,7 +347,7 @@ analyses. Rather than looking at quality scores for each individual read, FastQC
 quality collectively across all reads within a sample. The image below shows one FastQC-generated plot that indicates
 a very high quality sample:
 
-![good_quality](../img/good_quality1.8.png)
+![good_quality](img/good_quality1.8.png)
 
 The x-axis displays the base position in the read, and the y-axis shows quality scores. In this 
 example, the sample contains reads that are 40 bp long. This is much shorter than the reads we 
@@ -364,7 +364,7 @@ acceptable (yellow), and bad (red) quality scores.
 
 Now let's take a look at a quality plot on the other end of the spectrum. 
 
-![bad_quality](../img/bad_quality1.8.png)
+![bad_quality](img/bad_quality1.8.png)
 
 Here, we see positions within the read in which the boxes span a much wider range. Also, quality scores drop quite low into the "bad" range, particularly on the tail end of the reads. The FastQC tool produces several other diagnostic plots to assess sample quality, in addition to the one plotted above. 
 
@@ -1042,7 +1042,7 @@ We mentioned before that we are working with files from a long-term evolution st
 
 # Alignment to a reference genome
 
-![workflow_align](../img/variant_calling_workflow_align.png)
+![workflow_align](img/variant_calling_workflow_align.png)
 
 We perform read alignment or mapping to determine where in the genome our reads originated from. There are a number of tools to
 choose from and, while there is no gold standard, there are some tools that are better suited for particular NGS analyses. We will be
@@ -1172,10 +1172,10 @@ that follows corresponds to alignment information for a single read. Each alignm
 mapping information and a variable number of other fields for aligner specific information. An example entry from a SAM file is 
 displayed below with the different fields highlighted.
 
-![sam_bam1](../img/sam_bam.png)
+![sam_bam1](img/sam_bam.png)
 
 
-![sam_bam2](../img/sam_bam3.png)
+![sam_bam2](img/sam_bam3.png)
 
 We will convert the SAM file to BAM format using the `samtools` program with the `view` command and tell this command that the input is in SAM format (`-S`) and to output BAM format (`-b`): 
 
@@ -1234,7 +1234,7 @@ variant frequency and some measure of confidence. Similar to other steps in this
 variant calling. In this workshop we will be using `bcftools`, but there are a few things we need to do before actually calling the 
 variants.
 
-![workflow](../img/variant_calling_workflow.png)
+![workflow](img/variant_calling_workflow.png)
 
 ### Step 1: Calculate the read coverage of positions in the genome
 
@@ -1434,7 +1434,7 @@ to unzip it, and then drag the program into your Applications folder.
 
 Your IGV browser should look like the screenshot below:
 
-![IGV](../img/igv-screenshot.png)
+![IGV](img/igv-screenshot.png)
 
 There should be two tracks: one coresponding to our BAM file and the other for our VCF file. 
 
