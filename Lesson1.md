@@ -27,7 +27,7 @@ There are several free options but you should have installed [MobaXterm](https:/
  
 4. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
 
-  ![](img/mobaXterm_screenshot_2.png)
+  ![](img/mobaXterm_screenshot_2.png)  
 
     ```console
     ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
