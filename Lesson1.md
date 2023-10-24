@@ -25,9 +25,9 @@ There are several free options but you should have installed [MobaXterm](https:/
  
 3. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
 
-    ~~~
+    ```console
     ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
-    ~~~
+    ```
 
     *Be sure to pay attention to capitalization and spaces*
 
@@ -57,9 +57,9 @@ Mac and Linux operating systems will already have terminals installed.
 
 2. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
 
-    ~~~
+    ```console
     $ ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
-    ~~~
+    ```
 
     *Be sure to pay attention to capitalization and spaces*
 
@@ -83,9 +83,9 @@ You should now be connected!
 
 1.  Connect to one of the TU Delft cloud instances. You can choose any of the virtual machines indicated on the shared document for the course.
 
-    ~~~
+    ```console
     $ ssh REPLACE-WITH-YOUR-NETID@vm0X-bt-edu.tnw.tudelft.nl
-    ~~~
+    ```
     *Make sure to replace your netid and the vm number*
     
 3.  You might receive a security message that looks something like the message below
@@ -111,17 +111,20 @@ that are currently running, but doesn't shut the computer off.
 
 To log off, use the `exit` command in the same terminal you connected with. This will close the connection to the cloud instance, and your terminal will go back to showing the student-linux bastion host:
 
-~~~
+```console
 $ exit
+```
+~~~
 logout
 Connection to vm03-bt-edu.tnw.tudelft.nl closed.
--bash-4.1$
 ~~~
 
 To log off from linux-bastion, type `exit` again. This will close the connection to the linux-bastion, and your terminal will go back to showing your local computer:
 
-~~~
+```console
 $ exit
+```
+~~~
 logout
 Connection to linux-bastion.tudelft.nl closed.
 $
@@ -131,21 +134,21 @@ $
 
 All Bioinformatics software that will be used during this course is all ready installed but we need tell the system where they are by loading the environment.
 
-~~~
+```console
 $ source /mnt/linapps/conda3loader
-~~~
+```
 
 And activate it:
 
-~~~
+```console
 $ conda activate DCW
-~~~
+```
 
 Next we need to copy the course material with the cp (copy) command which will be explained in detail during the course.
 
-~~~
+```console
 $ cp -r /mnt/linapps/carpentry/shell_data/ .
-~~~
+```
 
 ## Navigating your file system
 
@@ -167,9 +170,9 @@ Several commands are frequently used to create, inspect, rename, and delete file
 > This isn't necessary to follow along (in fact, your prompt may have
 > other helpful information you want to know about).  This is up to you!  
 
-~~~
+```console
 $
-~~~
+```
 
 The dollar sign is a **prompt**, which shows us that the shell is waiting for input;
 your shell may use a different character as a prompt and may add information before
@@ -183,16 +186,20 @@ Let's find out where we are by running a command called `pwd`
 the computer's response is `/home/nfs/YOUR-NETID`,
 which is the top level directory within our cloud system:
 
-~~~
+```console
 $ pwd
+```
+~~~
 /home/nfs/YOUR-NETID
 ~~~
 
 Let's look at how our file system is organized. We can see what files and subdirectories are in this directory by running `ls`,
 which stands for "listing":
 
-~~~
+```console
 $ ls
+```
+~~~
 shell_data
 ~~~
 *you might have different file but should at least have `shell_data` now*
@@ -206,22 +213,26 @@ directory name to change our working directory.
 Let's say we want to navigate to the `shell_data` directory we saw above.  We can
 use the following command to get there:
 
-~~~
+```console
 $ cd shell_data
-~~~
+```
 
 Let's look at what is in this directory:
 
-~~~
+```console
 $ ls
+```
+~~~
 sra_metadata  untrimmed_fastq
 ~~~
 
 We can make the `ls` output more comprehensible by using the **flag** `-F`,
 which tells `ls` to add a trailing `/` to the names of directories:
 
-~~~
+```console
 $ ls -F
+```
+~~~
 sra_metadata/  untrimmed_fastq/
 ~~~
 
@@ -230,9 +241,9 @@ there are no decorations, it's a file.
 
 `ls` has lots of other options. To find out what they are, we can type:
 
-~~~
+```console
 $ man ls
-~~~
+```
 
 Some manual files are very long. You can scroll through the file using
 your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page
@@ -245,9 +256,11 @@ as needed.
 
 Let's go into the `untrimmed_fastq` directory and see what is in there.
 
-~~~
+```console
 $ cd untrimmed_fastq
 $ ls -F
+```
+~~~
 SRR097977.fastq  SRR098026.fastq
 ~~~
 
@@ -265,25 +278,25 @@ directory or file name.
 
 Return to your home directory:
 
-~~~
+```console
 $ cd
-~~~
+```
 
 then enter:
 
-~~~
+```console
 $ cd she<tab>
-~~~
+```
 
 The shell will fill in the rest of the directory name for
 `shell_data`.
 
 Now change directories to `untrimmed_fastq` in `shell_data`
 
-~~~
+```console
 $ cd shell_data
 $ cd untrimmed_fastq
-~~~
+```
 
 Using tab complete can be very helpful. However, it will only autocomplete
 a file or directory name if you've typed enough characters to provide
@@ -292,27 +305,29 @@ a unique identifier for the file or directory you are trying to access.
 If we navigate back to our `untrimmed_fastq` directory and try to access one
 of our sample files:
 
-~~~
+```console
 $ cd
 $ cd shell_data
 $ cd untrimmed_fastq
 $ ls SR<tab>
-~~~
+```
 
 The shell auto-completes your command to `SRR09`, because all file names in 
 the directory begin with this prefix. When you hit
 <kbd>Tab</kbd> again, the shell will list the possible choices.
 
-~~~
+```console
 $ ls SRR09<tab><tab>
 SRR097977.fastq  SRR098026.fastq
-~~~
+```
 
 Tab completion can also fill in the names of programs, which can be useful if you
 remember the beginning of a program name.
 
-~~~
+```console
 $ pw<tab><tab>
+```
+~~~
 pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
 ~~~
 
@@ -323,17 +338,19 @@ Displays the name of every program that starts with `pw`.
 Use the commands we've learned so far to navigate to the `shell_data/untrimmed_fastq` directory, if
 you're not already there. 
 
-~~~
+```console
 $ cd
 $ cd shell_data
 $ cd untrimmed_fastq
-~~~
+```
 
 What if we want to move back up and out of this directory and to our top level 
 directory? Can we type `cd shell_data`? Try it and see what happens.
 
-~~~
+```console
 $ cd shell_data
+```
+~~~
 -bash: cd: shell_data: No such file or directory
 ~~~
 
@@ -343,20 +360,24 @@ above the one you were located in.
 
 We have a special command to tell the computer to move us back or up one directory level. 
 
-~~~
+```console
 $ cd ..
-~~~
+```
 
 Now we can use `pwd` to make sure that we are in the directory we intended to navigate
 to, and `ls` to check that the contents of the directory are correct.
 
-~~~
+```console
 $ pwd
+```
+~~~
 /home/nfs/YOUR-NETID/shell_data
 ~~~
 
-~~~
+```console
 $ ls
+```
+~~~
 sra_metadata  untrimmed_fastq
 ~~~
 
@@ -364,9 +385,9 @@ From this output, we can see that `..` did indeed take us back one level in our 
 
 You can chain these together like so:
 
-~~~
+```console
 $ ls ../../
-~~~
+```
 
 prints the contents of `/home`, which is one level up from your root directory. 
 
@@ -384,29 +405,33 @@ Hint: hidden files and folders in Unix start with `.`, for example `.my_hidden_d
 ## Solution
 
 First use the `man` command to look at the options for `ls`. 
-~~~
+```console
 $ man ls
-~~~
+```
 
 The `-a` option is short for `all` and says that it causes `ls` to "not ignore
 entries starting with ." This is the option we want. 
 
-~~~
+```console
 $ ls -a
+```
+~~~
 .  ..  .hidden	sra_metadata  untrimmed_fastq
 ~~~
 
 The name of the hidden directory is `.hidden`. We can navigate to that directory
 using `cd`. 
 
-~~~
+```console
 $ cd .hidden
-~~~
+```console
 
 And then list the contents of the directory using `ls`. 
 
-~~~
+```console
 $ ls
+```
+~~~
 youfoundit.txt
 ~~~
 
@@ -421,14 +446,16 @@ directory you are in using the `pwd` command. However, you can also
 give `ls` the names of other directories to view. Navigate to your
 home directory if you are not already there.
 
-~~~
+```console
 $ cd
-~~~
+```
 
 Then enter the command:
 
-~~~
+```console
 $ ls shell_data
+```
+~~~
 sra_metadata  untrimmed_fastq
 ~~~
 
@@ -439,10 +466,10 @@ The `cd` command works in a similar way.
 
 Try entering:
 
-~~~
+```console
 $ cd
 $ cd shell_data/untrimmed_fastq
-~~~
+```
 
 This will take you to the `untrimmed_fastq` directory without having to go through
 the intermediate directory.
@@ -454,9 +481,11 @@ the intermediate directory.
 > 
 > > ## Solution
 > >
-> > ~~~
+> > ```console
 > > $ cd
 > > $ ls shell_data/untrimmed_fastq/
+> > ```
+> > ~~~
 > > SRR097977.fastq  SRR098026.fastq 
 > > ~~~
 > > 
@@ -470,10 +499,10 @@ hierarchy. The full path tells you where a directory is in that
 hierarchy. Navigate to the home directory, then enter the `pwd`
 command.
 
-~~~
+```console
 $ cd  
 $ pwd  
-~~~
+```
 
 You will see: 
 
@@ -490,22 +519,22 @@ directory in `home` which is a directory in `/`.
 
 Now enter the following command:
 
-~~~
+```console
 $ cd /home/nfs/YOUR-NETID/shell_data/.hidden
-~~~
+```
 
 This jumps forward multiple levels to the `.hidden` directory. 
 Now go back to the home directory. 
 
-~~~
+```console
 $ cd
-~~~
+```console
 
 You can also navigate to the `.hidden` directory using:
 
-~~~
+```console
 $ cd shell_data/.hidden
-~~~
+```console
 
 These two commands have the same effect, they both take us to the `.hidden` directory.
 The first uses the absolute path, giving the full address from the home directory. The
@@ -544,15 +573,17 @@ home directory is very common. The tilde character,
 `~`, is a shortcut for your home directory. Navigate to the `shell_data`
 directory:
 
-~~~
+```console
 $ cd
 $ cd shell_data
-~~~
+```
 
 Then enter the command:
 
-~~~
+```console
 $ ls ~
+```
+~~~
 shell_data
 ~~~
 
@@ -573,15 +604,17 @@ have two results files, which are stored in our `untrimmed_fastq` directory.
 
 Navigate to your `untrimmed_fastq` directory:
 
-~~~
+```console
 $ cd ~/shell_data/untrimmed_fastq
-~~~
+```
 
 We are interested in looking at the FASTQ files in this directory. We can list
 all files with the .fastq extension using the command:
 
-~~~
+```console
 $ ls *.fastq
+```
+~~~
 SRR097977.fastq  SRR098026.fastq
 ~~~
 
@@ -590,8 +623,10 @@ Thus, `*.fastq` matches every file that ends with `.fastq`.
 
 This command: 
 
-~~~
+```console
 $ ls *977.fastq
+```
+~~~
 SRR097977.fastq
 ~~~
 
@@ -599,8 +634,10 @@ lists only the file that ends with `977.fastq`.
 
 This command:
 
-~~~
+```console
 $ ls /usr/bin/*.sh
+```
+~~~
 /usr/bin/amuFormat.sh  /usr/bin/gettext.sh  /usr/bin/gvmap.sh
 ~~~
 
@@ -625,8 +662,10 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > ## Practice
 > We can use the command `echo` to see how the wildcard character is interpreted by the shell.
 > 
-> ~~~
+> ```console
 > $ echo *.fastq
+> ```
+> ~~~
 > SRR097977.fastq SRR098026.fastq
 > ~~~
 > 
@@ -637,13 +676,17 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > `echo *.missing` and `ls *.missing`.
 > 
 > > ## Solution
-> > ~~~
+> > ```console
 > > $ echo *.missing
+> > ```
+> > ~~~
 > > *.missing
 > > ~~~
 > > 
-> > ~~~
+> > ```console
 > > $ ls *.missing
+> > ```
+> > ~~~
 > > ls: cannot access '*.missing': No such file or directory
 > > ~~~
 > >
@@ -666,9 +709,9 @@ is very useful.
 
 You can also review your recent commands with the `history` command, by entering:
 
-~~~
+```console
 $ history
-~~~
+```
 
 to see a numbered list of recent commands. You can reuse one of these commands
 directly by referring to the number of that command.
@@ -683,9 +726,9 @@ For example, if your history looked like this:
 
 then you could repeat command #260 by entering:
 
-~~~
+```console
 $ !260
-~~~
+```
 
 Type `!` (exclamation point) and then the number of the command from your history.
 You will be glad you learned this when you need to re-run very complicated commands.
@@ -708,9 +751,9 @@ contents using the program `cat`.
 
 Enter the following command from within the `untrimmed_fastq` directory: 
 
-~~~
+```console
 $ cat SRR098026.fastq
-~~~
+```
 
 This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
@@ -733,9 +776,9 @@ are identical to the `man` program.
 
 Enter the following command:
 
-~~~
+```console
 $ less SRR097977.fastq
-~~~
+```
 
 Some navigation commands in `less`:
 
@@ -784,8 +827,10 @@ to see the beginning or end of the file, or see how it's formatted.
 The commands are `head` and `tail` and they let you look at
 the beginning and end of a file, respectively.
 
-~~~
+```console
 $ head SRR098026.fastq
+```
+~~~
 @SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
 NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
 +SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
@@ -798,8 +843,10 @@ NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
 NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
 ~~~
 
-~~~
+```console
 $ tail SRR098026.fastq
+```
+~~~
 +SRR098026.247 HWUSI-EAS1599_1:2:1:2:1311 length=35
 #!##!#################!!!!!!!######
 @SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
@@ -815,13 +862,17 @@ A!@B!BBB@ABAB#########!!!!!!!######
 The `-n` option to either of these commands can be used to print the
 first or last `n` lines of a file. 
 
-~~~
+```console
 $ head -n 1 SRR098026.fastq
+```
+~~~
 @SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
 ~~~
 
-~~~
+```console
 $ tail -n 1 SRR098026.fastq
+```
+~~~
 A!@B!BBB@ABAB#########!!!!!!!######
 ~~~
 
@@ -841,8 +892,10 @@ include...
 We can view the first complete read in one of the files in our dataset by using `head` to look at
 the first four lines.
 
-~~~
+```console
 $ head -n 4 SRR098026.fastq
+```
+~~~
 @SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
 NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
 +SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
@@ -912,9 +965,11 @@ First, let's make a copy of one of our FASTQ files using the `cp` command.
 
 Navigate to the `shell_data/untrimmed_fastq` directory and enter:
 
-~~~
+```console
 $ cp SRR098026.fastq SRR098026-copy.fastq
 $ ls -F
+```
+~~~
 SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
 ~~~
 
@@ -926,27 +981,31 @@ called `backup` where we'll store our backup data files.
 The `mkdir` command is used to make a directory. Enter `mkdir`
 followed by a space, then the directory name you want to create:
 
-~~~
+```console
 $ mkdir backup
-~~~
+```
 
 ### Moving / Renaming 
 
 We can now move our backup file to this directory. We can
 move files around using the command `mv`: 
 
-~~~
+```console
 $ mv SRR098026-copy.fastq backup
 $ ls backup
+```
+~~~
 SRR098026-copy.fastq
 ~~~
 
 The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup:
 
-~~~
+```console
 $ cd backup
 $ mv SRR098026-copy.fastq SRR098026-backup.fastq
 $ ls
+```
+~~~
 SRR098026-backup.fastq
 ~~~
 
@@ -958,8 +1017,10 @@ that we're only allowed to read (i.e. view) the file, not write to it (i.e. make
 
 View the current permissions on a file using the `-l` (long) flag for the `ls` command: 
 
-~~~
+```console
 $ ls -l
+```
+~~~
 -rw-r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
 ~~~
 
@@ -978,9 +1039,11 @@ talk more about this in a later lesson.
 
 Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`. 
 
-~~~
+```console
 $ chmod -w SRR098026-backup.fastq
-$ ls -l 
+$ ls -l
+```
+~~~
 -r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
 ~~~
 
@@ -988,9 +1051,9 @@ $ ls -l
 
 To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command:
 
-~~~
+```console
 $ rm SRR098026-backup.fastq
-~~~
+```
 
 You'll be asked if you want to override your file permissions:
 
@@ -1010,10 +1073,10 @@ we just made.
 
 Enter the following command:
 
-~~~
+```console
 $ cd ..
 $ rm -r backup
-~~~
+```
 
 This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory, 
 you will be asked whether you want to override your permission settings. 
@@ -1067,9 +1130,9 @@ Let's give it a try!
 We'll search for strings inside of our fastq files. Let's first make sure we are in the correct 
 directory:
 
-~~~
+```console
 $ cd ~/shell_data/untrimmed_fastq
-~~~
+```
 
 
 Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
@@ -1085,9 +1148,9 @@ Suppose we want to see how many reads in our file have really bad segments conta
 > 
 
 Let's search for the string NNNNNNNNNN in the SRR098026 file:
-~~~
+```console
 $ grep NNNNNNNNNN SRR098026.fastq
-~~~
+```
 
 This command returns a lot of output to the terminal. Every single line in the SRR098026 
 file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is. 
@@ -1102,9 +1165,9 @@ We can use the `-B` argument for grep to return a specific number of lines befor
 each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each 
 matching line, so we add `-B1 -A2` to our grep command:
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
-~~~
+```
 
 One of the sets of lines returned by this command is: 
 
@@ -1181,9 +1244,9 @@ Let's try out this command and copy all the records (including all four lines of
 in our FASTQ files that contain 
 'NNNNNNNNNN' to another file called `bad_reads.txt`.
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-~~~
+```
 
 > ## File extensions
 > 
@@ -1202,16 +1265,20 @@ We can check the number of lines in our new file using a command called `wc`.
 `wc` stands for **word count**. This command counts the number of words, lines, and characters
 in a file. 
 
-~~~
+```console
 $ wc bad_reads.txt
+```
+~~~
 537  1073 23217 bad_reads.txt
 ~~~
 
 This will tell us the number of lines, words and characters in the file. If we
 want only the number of lines, we can use the `-l` flag for `lines`.
 
-~~~
+```console
 $ wc -l bad_reads.txt
+```
+~~~
 537 bad_reads.txt
 ~~~
 
@@ -1226,9 +1293,11 @@ four to get the number of sequences that match our search pattern.
  </summary>
 ## Solution
 
-~~~
+```console
 $ grep NNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+```
+~~~
 249
 ~~~
 </details>
@@ -1239,15 +1308,19 @@ to a file, the new output will replace the output that was already present in th
 This is called "overwriting" and, just like you don't want to overwrite your video recording
 of your kid's first birthday party, you also want to avoid overwriting your data files.
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+```
+~~~
 537 bad_reads.txt
 ~~~
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+```
+~~~
 0 bad_reads.txt
 ~~~
 
@@ -1258,15 +1331,19 @@ search sequence. So our file was overwritten and is now empty.
 We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will 
 append new output to the end of a file, rather than overwriting it.
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+```
+~~~
 537 bad_reads.txt
 ~~~
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
 $ wc -l bad_reads.txt
+```
+~~~
 537 bad_reads.txt
 ~~~
 
@@ -1274,9 +1351,11 @@ The output of our second call to `wc` shows that we have not overwritten our ori
 
 We can also do this with a single line of code by using a wildcard: 
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+```
+~~~
 537 bad_reads.txt
 ~~~
 
@@ -1311,9 +1390,9 @@ When our output was scrolling by, we might have wished we could slow it down and
 look at it, like we can with `less`. Well it turns out that we can! We can redirect our output
 from our `grep` call through the `less` command.
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
-~~~
+```
 
 We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows 
 to scroll through the output and use `q` to exit `less`.
@@ -1322,9 +1401,9 @@ If we don't want to create a file before counting lines of output from our `grep
 the output of the grep search to the command `wc -l`. This can be helpful for investigating your output if you are not sure
 you would like to save it to a file. 
 
-~~~
+```console
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l 
-~~~
+```
 
 Redirecting output is often not intuitive, and can take some time to get used to. Once you're 
 comfortable with redirection, however, you'll be able to combine any number of commands to
@@ -1352,11 +1431,17 @@ Sometimes, we want to expand a variable without any whitespace to its right.
 Suppose we have a variable named `foo` that contains the text `abc`, and would
 like to expand `foo` to create the text `abcEFG`.
 
-~~~
+```console
 $ foo=abc
 $ echo foo is $foo
+```
+~~~
 foo is abc
+~~~
+```console
 $ echo foo is $fooEFG      # doesn't work
+```
+~~~
 foo is
 ~~~
 
@@ -1364,23 +1449,29 @@ The interpreter is trying to expand a variable named `fooEFG`, which (probably)
 doesn't exist. We can avoid this problem by enclosing the variable name in 
 braces (`{` and `}`, sometimes called "squiggle braces").
 
-~~~
+```console
 $ foo=abc
 $ echo foo is $foo
+```
+~~~
 foo is abc
+~~~
+```console
 $ echo foo is ${foo}EFG      # now it works!
+```
+~~~
 foo is abcEFG
 ~~~
 
 Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice the shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
-~~~
+```console
 $ cd ../untrimmed_fastq/
 $ for filename in *.fastq
 > do
 > head -n 2 ${filename}
 > done
-~~~
+```
 
 The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
 as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
@@ -1391,12 +1482,12 @@ word `done` ends the loop.
 After executing the loop, you should see the first two lines of both fastq files printed to the terminal. Let's create a loop that 
 will save this information to a file.
 
-~~~
+```console
 $ for filename in *.fastq
 > do
 > head -n 2 ${filename} >> seq_info.txt
 > done
-~~~
+```
 
 Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
 every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
@@ -1404,9 +1495,9 @@ every time the loop iterates, so it would only have text from the last variable 
 ## Using Basename in for loops
 Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` extension from the files that we’ve been working with. 
 
-~~~
+```console
 $ basename SRR097977.fastq .fastq
-~~~
+```
 
 We see that this returns just the SRR accession, and no longer has the .fastq file extension on it.
 
@@ -1416,10 +1507,9 @@ SRR097977
 
 If we try the same thing but use `.fasta` as the file extension instead, nothing happens. This is because basename only works when it exactly matches a string in the file.
 
-~~~
+```console
 $ basename SRR097977.fastq .fasta
-~~~
-
+```
 ~~~
 SRR097977.fastq
 ~~~
@@ -1428,13 +1518,13 @@ Basename is really powerful when used in a for loop. It allows to access just th
 
 Inside our for loop, we create a new name variable. We call the basename function inside the parenthesis, then give our variable name from the for loop, in this case `${filename}`, and finally state that `.fastq` should be removed from the file name. It’s important to note that we’re not changing the actual files, we’re creating a new variable called name. The line > echo $name will print to the terminal the variable name each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
 
-~~~
+```console
 $ for filename in *.fastq
 > do
 > name=$(basename ${filename} .fastq)
 > echo ${name}
 > done
-~~~
+```
 
 ## Exercise 5
 <details>
@@ -1444,25 +1534,25 @@ $ for filename in *.fastq
 </summary>
 ## Solution
 
-~~~
+```console
 $ for filename in *.txt
 > do
 > name=$(basename ${filename} .txt)
 > echo ${name}
 > done
-~~~
+```
 
 </details>
 
 One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them. 
 
-~~~
+```console
 $ for filename in *.txt
 > do
 > name=$(basename ${filename} .txt)
 > mv ${filename}  ${name}_2019.txt
 > done
-~~~
+```
 
 ## Exercise 6
 <details>
@@ -1472,11 +1562,11 @@ $ for filename in *.txt
 </summary>
 ## Solution
   
-~~~
+```console
 $ for filename in *_2019.txt
 > do
 > name=$(basename ${filename} _2019.txt)
 > mv ${filename} ${name}.txt
 > done
-~~~
+```
 </details>
