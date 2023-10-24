@@ -715,7 +715,7 @@ $ cat SRR098026.fastq
 This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
 
-> ## Exercise
+> ## Practice
 > 
 > 1. Print out the contents of the `~/shell_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file? 
 > 2.  From your home directory, and without changing directories,
@@ -765,7 +765,7 @@ and where it is in the file. If you continue to type `/` and hit return, you wil
 forward to the next instance of this sequence motif. If you instead type `?` and hit 
 return, you will search backwards and move up the file to previous examples of this motif.
 
-> ## Exercise
+> ## Practice
 >
 > What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
 > 
