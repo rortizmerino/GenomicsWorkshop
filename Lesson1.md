@@ -622,7 +622,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > special permissions which are not discussed here, so it's best to avoid it and work within your home directory.
 
 
-> ## Exercise 3
+> ## Practice
 > We can use the command `echo` to see how the wildcard character is interpreted by the shell.
 > 
 > ~~~
@@ -690,7 +690,7 @@ $ !260
 Type `!` (exclamation point) and then the number of the command from your history.
 You will be glad you learned this when you need to re-run very complicated commands.
 
-> ## Exercise 4
+> ## Practice
 > Find the line number in your history for the command that listed all the .sh
 > files in `/usr/bin`. Rerun that command.
 >
@@ -715,7 +715,7 @@ $ cat SRR098026.fastq
 This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
 
-> ## Exercise 5
+> ## Exercise
 > 
 > 1. Print out the contents of the `~/shell_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file? 
 > 2.  From your home directory, and without changing directories,
@@ -765,7 +765,7 @@ and where it is in the file. If you continue to type `/` and hit return, you wil
 forward to the next instance of this sequence motif. If you instead type `?` and hit 
 return, you will search backwards and move up the file to previous examples of this motif.
 
-> ## Exercise 6
+> ## Exercise
 >
 > What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
 > 
@@ -1116,7 +1116,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ~~~
 
-> ## Exercise 8
+> ## Practice
 >
 > 1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
 > Have your search return all matching lines and the name (or identifier) for each sequence
@@ -1219,20 +1219,21 @@ $ wc -l bad_reads.txt
 Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
 four to get the number of sequences that match our search pattern.
 
-> ## Exercise 9 
->
-> How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
->
->> ## Solution
->>  
->>
->> ~~~
->> $ grep NNN SRR098026.fastq > bad_reads.txt
->> $ wc -l bad_reads.txt
->> 249
->> ~~~
->>
->
+## Exercise 4
+<details>
+ <summary>
+
+How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
+ 
+ </summary>
+## Solution
+
+~~~
+$ grep NNN SRR098026.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
+249
+~~~
+</details>
 
 We might want to search multiple FASTQ files for sequences that match our search pattern.
 However, we need to be careful, because each time we use the `>` command to redirect output
@@ -1437,22 +1438,23 @@ $ for filename in *.fastq
 > done
 ~~~
 
-> ## Exercise 10
->
-> Print the file prefix of all of the `.txt` files in our current directory.
->
->> ## Solution
->>  
->>
->> ~~~
->> $ for filename in *.txt
->> > do
->> > name=$(basename ${filename} .txt)
->> > echo ${name}
->> > done
->> ~~~
->>
->
+## Exercise 5
+<details>
+<summary>
+ Print the file prefix of all of the `.txt` files in our current directory.
+
+</summary>
+## Solution
+
+~~~
+$ for filename in *.txt
+> do
+> name=$(basename ${filename} .txt)
+> echo ${name}
+> done
+~~~
+
+</details>
 
 One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them. 
 
@@ -1464,19 +1466,20 @@ $ for filename in *.txt
 > done
 ~~~
 
-> ## Exercise 11
->
-> Remove `_2019` from all of the `.txt` files. 
->
->> ## Solution
->>  
->>
->> ~~~
->> $ for filename in *_2019.txt
->> > do
->> > name=$(basename ${filename} _2019.txt)
->> > mv ${filename} ${name}.txt
->> > done
->> ~~~
->>
->
+## Exercise 6
+<details>
+<summary>
+
+ Remove `_2019` from all of the `.txt` files. 
+
+</summary>
+## Solution
+  
+~~~
+$ for filename in *_2019.txt
+> do
+> name=$(basename ${filename} _2019.txt)
+> mv ${filename} ${name}.txt
+> done
+~~~
+</details>
