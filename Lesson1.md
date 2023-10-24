@@ -370,6 +370,8 @@ $ ls ../../
 
 prints the contents of `/home`, which is one level up from your root directory. 
 
+<details>
+<summary>
 > ## Finding hidden directories
 >
 > First navigate to the `shell_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
@@ -378,6 +380,7 @@ prints the contents of `/home`, which is one level up from your root directory.
 > 
 > Hint: hidden files and folders in Unix start with `.`, for example `.my_hidden_directory`
 >
+</summary>
 > > ## Solution
 > > 
 > > First use the `man` command to look at the options for `ls`. 
@@ -408,7 +411,8 @@ prints the contents of `/home`, which is one level up from your root directory.
 > > ~~~
 > > 
 > > The name of the text file is `youfoundit.txt`.
-
+</details>
+ 
 ## Examining the contents of other directories
 
 By default, the `ls` commands lists the contents of the working
