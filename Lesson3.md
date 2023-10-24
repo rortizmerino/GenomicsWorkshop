@@ -1,10 +1,18 @@
 # L3. DATA WRANGLING 2: SCRIPTING AND AUTOMATION
 
-In this lession we will make automated workflows for our previously learned variant calling commands by using shell scripts.
+# automating a Variant Calling Workflow
 
-1. Fastqc bash script.
-2. Fastqc sbatch script.
+In this lession we will make automated workflows for our previous learned variant calling commands by using shell scripts.
+
+1. fastqc bash script.
+2. fastqc sbatch script.
 3. Variant Calling sbatch script.
+
+## login on DelftBlue supercomputer
+
+```console
+[user@localcomputer ~]$ ssh <REPLACE-WITH-YOUR-NETID>@login.delftblue.tudelft.nl
+```
 
 ## Getting the data
 
@@ -14,13 +22,13 @@ On DelftBlue every user has a scratch folder.
 [netid@login ~]$ cd /scratch/$USER
 ```
 
-Copy the folder `dc_workshop` data to our scratch folder.
+Copy the folder `dc_workshop` data to your scratch folder.
 
 ```console
-[netid@login ~]$ cp /tudelft.net/staff-umbrella/WorkshopsData/dc_workshop .
+[netid@login ~]$ cp -r /tudelft.net/staff-umbrella/WorkshopsData/dc_workshop .
 ```
 
-Go into the folder dc_workshop
+And go into the folder dc_workshop
 
 ```console
 [netid@login ~]$ cd dc_workshop
@@ -28,19 +36,17 @@ Go into the folder dc_workshop
 
 ## fastqc bash script
 
-Make the bash script for the QC workflow.
+make the bash script for the QC workflow.
 
 ```console
 [netid@login ~]$ touch scripts/read_qc.sh dc_workshop
 ```
 
-Edit the new file and copy-paste the scripts content from:
+edit the new file and copy-past the scripts content from:
 https://mvdb01.github.io/wrangling-genomics/05-automation/index.html
 
-Output
-
 ```console
-
+Output
 set -e
 cd ~/dc_workshop/data/untrimmed_fastq/
 
@@ -66,15 +72,29 @@ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 ```
 
 Open the script with nano and find replace (Alt+R) `~/dc_workshop` with `$ROOT`.  
-Add line: `ROOT=“/scratch/$USER/dc_workshop”`  
-Add line: `source $ROOT/pathsloader`  
-Add lines just before line “mkdir -p $ROOT/results/fastqc_untrimmed_reads”:  
-`if [ -d "$ROOT/results/fastqc_untrimmed_reads" ]`  
-`then`  
-    `echo "Directory $ROOT/results/fastqc_untrimmed_reads exists."`  
-    `rm -r $ROOT/results/fastqc_untrimmed_reads`  
-`Fi`  
-Add line at the end of the script: `echo "doei doei!"`
+Add these lines:
+
+```console
+ROOT=“/scratch/$USER/dc_workshop”
+
+source $ROOT/pathsloader
+```
+
+Add lines just before line 'mkdir -p $ROOT/results/fastqc_untrimmed_reads':
+
+```console
+if [ -d "$ROOT/results/fastqc_untrimmed_reads" ]
+then
+    echo "Directory $ROOT/results/fastqc_untrimmed_reads exists."
+    rm -r $ROOT/results/fastqc_untrimmed_reads
+fi
+```
+
+Add line at the end of the script:
+
+```console
+echo "doei doei!"
+```
 
 Run the script:
 
@@ -109,11 +129,10 @@ Add the following lines to the top of the file:
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=1GB
-#SBATCH --mail-user=<USERNAME>@tudelft.nl
 #SBATCH –-mail-type=ALL
 ```
 
-Submit the fastqqc sbatch script.  
+submit the fastqqc sbatch script.  
 
 ```console
 [netid@login ~]$ sbatch scripts/read_qc.sbatch
@@ -131,7 +150,7 @@ Check after completion the job stats:
 [netid@login ~]$ seff "jobid"
 ```
 
-## Exercise
+## Excersice
 
 Change (lower) different parameters like “time” and “mem-per-cpu” (one at the time) and submit the job again. Check with seff.
 
@@ -201,9 +220,19 @@ for fq1 in ~/dc_workshop/data/trimmed_fastq_small/*_1.trim.sub.fastq
 ```
 
 Open the script with nano and find replace (Alt+R) `~/dc_workshop` with `$ROOT`.  
-Add line: `ROOT=“/scratch/$USER/dc_workshop”`  
-Add line: `source $ROOT/pathsloader`
-Add line at the end of the script: `echo "doei doei!"`
+Add these lines:
+
+```console
+ROOT=“/scratch/$USER/dc_workshop”
+
+source $ROOT/pathsloader
+```
+
+Add line at the end of the script:
+
+```console
+echo "doei doei!"
+```
 
 Add lines: (top of the script):
 
@@ -217,8 +246,7 @@ Add lines: (top of the script):
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=1GB
-#SBATCH --mail-user=<USERNAME>@tudelft.nl
-#SBATCH –mail-type=ALL
+#SBATCH –-mail-type=ALL
 
 
 module load 2022r2
