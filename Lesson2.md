@@ -45,7 +45,7 @@ This metadata describes information on the *Ara-3* clones and the columns repres
 | sequencing_depth | depth of sequencing |
 | cit              | citrate-using mutant status		|
 
-
+  
 > ## Challenge
 > 
 > Based on the metadata, can you answer the following questions?
@@ -61,8 +61,8 @@ This metadata describes information on the *Ara-3* clones and the columns repres
 > > 2. 62 rows, 12 columns
 > > 3. 10 citrate+ mutants
 > > 4. 6 hypermutable mutants
-> {: .solution}
-{: .challenge}
+> 
+
 
 # Bioinformatic workflows
 
@@ -112,7 +112,7 @@ curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/003/SRR2584863/SRR2584863_2.fa
 curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_1.fastq.gz
 curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fastq.gz 
 ~~~
-{: .bash}
+
 
 > ## Faster option
 > 
@@ -122,11 +122,11 @@ curl -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR258/006/SRR2584866/SRR2584866_2.fa
 > ~~~
 > $ cp /mnt/linapps/carpentry/dc_workshop/data/untrimmed_fastq/*fastq.gz .
 > ~~~
-> {: .bash}
+>
 > 
 > This command creates a copy of each of the files in the `/mnt/linapps/carpentry/dc_workshop/data/untrimmed_fastq/` directory that end in `fastq.gz` and
 > places the copies in the current working directory (signified by `.`). 
-{: .callout}
+
 
 
 The data comes in a compressed format, which is why there is a `.gz` at the end of the file names. This makes it faster to transfer, and allows it to take up less space on our computer. Let's unzip one of the files so that we can look at the fastq format.
@@ -134,7 +134,7 @@ The data comes in a compressed format, which is why there is a `.gz` at the end 
 ~~~
 $ gunzip SRR2584863_1.fastq.gz 
 ~~~
-{: .bash}
+
 
 # Quality Control
 
@@ -159,16 +159,11 @@ the first four lines.
 
 ~~~
 $ head -n 4 SRR2584863_1.fastq 
-~~~
-{: .bash}
-
-~~~
 @SRR2584863.1 HWI-ST957:244:H73TDADXX:1:1101:4712:2181/1
 TTCACATCCTGACCATTCAGTTGAGCAAAATAGTTCTTCAGTGCCTGTTTAACCGAGTCACGCAGGGGTTTTTGGGTTACCTGATCCTGAGAGTTAACGGTAGAAACGGTCAGTACGTCAGAATTTACGCGTTGTTCGAACATAGTTCTG
 +
 CCCFFFFFGHHHHJIJJJJIJJJIIJJJJIIIJJGFIIIJEDDFEGGJIFHHJIJJDECCGGEGIIJFHFFFACD:BBBDDACCCCAA@@CA@C>C3>@5(8&>C:9?8+89<4(:83825C(:A#########################
 ~~~
-{: .output}
 
 Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the 
 probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base call 
@@ -180,7 +175,6 @@ above, the quality score line is:
 ~~~
 CCCFFFFFGHHHHJIJJJJIJJJIIJJJJIIIJJGFIIIJEDDFEGGJIFHHJIJJDECCGGEGIIJFHFFFACD:BBBDDACCCCAA@@CA@C>C3>@5(8&>C:9?8+89<4(:83825C(:A#########################
 ~~~
-{: .output}
 
 The numerical value assigned to each of these characters depends on the 
 sequencing platform that generated the reads. The sequencing machine used to generate our data 
@@ -193,7 +187,6 @@ Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJ
                    |         |         |         |         |
 Quality score:    01........11........21........31........41                                
 ~~~
-{: .output}
 
 Each quality score represents the probability that the corresponding nucleotide call is
 incorrect. This quality score is logarithmically based, so a quality score of 10 reflects a
@@ -209,7 +202,6 @@ TTCACATCCTGACCATTCAGTTGAGCAAAATAGTTCTTCAGTGCCTGTTTAACCGAGTCACGCAGGGGTTTTTGGGTTAC
 +
 CCCFFFFFGHHHHJIJJJJIJJJIIJJJJIIIJJGFIIIJEDDFEGGJIFHHJIJJDECCGGEGIIJFHFFFACD:BBBDDACCCCAA@@CA@C>C3>@5(8&>C:9?8+89<4(:83825C(:A#########################
 ~~~
-{: .output}
 
 we can now see that there is a range of quality scores, but that the end of the sequence is
 very poor (`#` = a quality score of 2). 
@@ -222,24 +214,19 @@ very poor (`#` = a quality score of 2).
 >> ## Solution
 >> ~~~
 >> $ tail -n 4 SRR2584863_1.fastq 
->> ~~~
->> {: .bash}
->> 
->> ~~~
 >> @SRR2584863.1553259 HWI-ST957:245:H73R4ADXX:2:2216:21048:100894/1
 >> CTGCAATACCACGCTGATCTTTCACATGATGTAAGAAAAGTGGGATCAGCAAACCGGGTGCTGCTGTGGCTAGTTGCAGCAAACCATGCAGTGAACCCGCCTGTGCTTCGCTATAGCCGTGACTGATGAGGATCGCCGGAAGCCAGCCAA
 >> +
 >> CCCFFFFFHHHHGJJJJJJJJJHGIJJJIJJJJIJJJJIIIIJJJJJJJJJJJJJIIJJJHHHHHFFFFFEEEEEDDDDDDDDDDDDDDDDDCDEDDBDBDDBDDDDDDDDDBDEEDDDD7@BDDDDDD>AA>?B?<@BDD@BDC?BDA?
 >> ~~~
->> {: .output}
+>>
 >> 
 >> This read has more consistent quality at its end than the first 
 >> read that we looked at, but still has a range of quality scores, 
 >> most of them high. We will look at variations in position-based quality
 >> in just a moment.
 >> 
-> {: .solution}
-{: .challenge}
+> 
 
 At this point, lets validate that all the relevant tools are installed. 
 
@@ -358,7 +345,6 @@ BUGS
     Any bugs in fastqc should be reported either to simon.andrews@babraham.ac.uk
     or in www.bioinformatics.babraham.ac.uk/bugzilla/
 ~~~
-{: .bash}
 
 if fastqc is not installed then you would expect to see an error like
 
@@ -410,7 +396,6 @@ We will now assess the quality of the reads that we downloaded. First, make sure
 ~~~
 $ cd ~/dc_workshop/data/untrimmed_fastq/ 
 ~~~
-{: .bash}
 
 > ## Exercise
 > 
@@ -422,10 +407,6 @@ $ cd ~/dc_workshop/data/untrimmed_fastq/
 >>  
 >> ~~~
 >> $ ls -l -h
->> ~~~
->> {: .bash}
->> 
->> ~~~
 >> -rw-rw-r-- 1 dcuser dcuser 545M Jul  6 20:27 SRR2584863_1.fastq
 >> -rw-rw-r-- 1 dcuser dcuser 183M Jul  6 20:29 SRR2584863_2.fastq.gz
 >> -rw-rw-r-- 1 dcuser dcuser 309M Jul  6 20:34 SRR2584866_1.fastq.gz
@@ -433,19 +414,16 @@ $ cd ~/dc_workshop/data/untrimmed_fastq/
 >> -rw-rw-r-- 1 dcuser dcuser 124M Jul  6 20:22 SRR2589044_1.fastq.gz
 >> -rw-rw-r-- 1 dcuser dcuser 128M Jul  6 20:24 SRR2589044_2.fastq.gz
 >> ~~~
->> {: .output}
->> 
+>>
 >> There are six FASTQ files ranging from 124M (124MB) to 545M. 
 >> 
-> {: .solution}
-{: .challenge}
+> 
 
 FastQC can accept multiple file names as input, and on both zipped and unzipped files, so we can use the \*.fastq* wildcard to run FastQC on all of the FASTQ files in this directory.
 
 ~~~
 $ fastqc *.fastq* 
 ~~~
-{: .bash}
 
 You will see an automatically updating output message telling you the 
 progress of the analysis. It will start like this: 
@@ -462,7 +440,6 @@ Approx 35% complete for SRR2584863_1.fastq
 Approx 40% complete for SRR2584863_1.fastq
 Approx 45% complete for SRR2584863_1.fastq
 ~~~
-{: .output}
 
 In total, it should take about five minutes for FastQC to run on all
 six of our FASTQ files. When the analysis completes, your prompt
@@ -476,17 +453,12 @@ Approx 95% complete for SRR2589044_2.fastq.gz
 Analysis complete for SRR2589044_2.fastq.gz
 $
 ~~~
-{: .output}
 
 The FastQC program has created several new files within our
 `data/untrimmed_fastq/` directory. 
 
 ~~~
 $ ls 
-~~~
-{: .bash}
-
-~~~
 SRR2584863_1.fastq        SRR2584866_1_fastqc.html  SRR2589044_1_fastqc.html
 SRR2584863_1_fastqc.html  SRR2584866_1_fastqc.zip   SRR2589044_1_fastqc.zip
 SRR2584863_1_fastqc.zip   SRR2584866_1.fastq.gz     SRR2589044_1.fastq.gz
@@ -494,7 +466,6 @@ SRR2584863_2_fastqc.html  SRR2584866_2_fastqc.html  SRR2589044_2_fastqc.html
 SRR2584863_2_fastqc.zip   SRR2584866_2_fastqc.zip   SRR2589044_2_fastqc.zip
 SRR2584863_2.fastq.gz     SRR2584866_2.fastq.gz     SRR2589044_2.fastq.gz
 ~~~
-{: .output}
 
 For each input FASTQ file, FastQC has created a `.zip` file and a
 `.html` file. The `.zip` file extension indicates that this is 
@@ -511,7 +482,6 @@ $ mkdir -p ~/dc_workshop/results/fastqc_untrimmed_reads
 $ mv *.zip ~/dc_workshop/results/fastqc_untrimmed_reads/ 
 $ mv *.html ~/dc_workshop/results/fastqc_untrimmed_reads/ 
 ~~~
-{: .bash}
 
 Now we can navigate into this results directory and do some closer
 inspection of our output files.
@@ -519,7 +489,6 @@ inspection of our output files.
 ~~~
 $ cd ~/dc_workshop/results/fastqc_untrimmed_reads/ 
 ~~~
-{: .bash}
 
 ## Viewing the FastQC results
 
@@ -546,17 +515,15 @@ tab in your terminal program (In MobaXterm you can use "Open new tab" under the 
 ~~~
 $ mkdir -p ~/Desktop/fastqc_html 
 ~~~
-{: .bash}
 
 Now we can transfer our HTML files to our local computer using `scp`.
 
 ~~~
 $ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/results/fastqc_untrimmed_reads/*.html ~/Desktop/fastqc_html
 ~~~
-{: .bash}
 
 As a reminder, the first part
-of the command `YOUR-NETID@student-linux.tudelft.nl` is
+of the command `YOUR-NETID@linux-bastion.tudelft.nl` is
 the address for the remote computer. Make sure you replace `YOUR-NETID` with your login credentials. 
 
 The second part starts with a `:` and then gives the absolute path
@@ -578,7 +545,6 @@ SRR2584866_2_fastqc.html                      100%  251KB 252.8KB/s   00:00
 SRR2589044_1_fastqc.html                      100%  249KB 370.1KB/s   00:00    
 SRR2589044_2_fastqc.html                      100%  251KB 592.2KB/s   00:00  
 ~~~
-{: .output}
 
 Now we can go to our new directory and open the 6 HTML files. 
 
@@ -595,8 +561,8 @@ in your file browser.
 >> ## Solution
 >> All of the reads contain usable data, but the quality decreases toward
 >> the end of the reads.
-> {: .solution}
-{: .challenge}
+> 
+
 
 ## Decoding the other FastQC outputs
 We've now looked at quite a few "Per base sequence quality" FastQC graphs, but there are nine other graphs that we haven't talked about! Below we have provided a brief overview of interpretations for each of these plots. For more information, please see the FastQC documentation [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/) 
@@ -623,16 +589,11 @@ our results subdirectory.
 ~~~
 $ cd ~/dc_workshop/results/fastqc_untrimmed_reads/ 
 $ ls 
-~~~
-{: .bash}
-
-~~~
 SRR2584863_1_fastqc.html  SRR2584866_1_fastqc.html  SRR2589044_1_fastqc.html
 SRR2584863_1_fastqc.zip   SRR2584866_1_fastqc.zip   SRR2589044_1_fastqc.zip
 SRR2584863_2_fastqc.html  SRR2584866_2_fastqc.html  SRR2589044_2_fastqc.html
 SRR2584863_2_fastqc.zip   SRR2584866_2_fastqc.zip   SRR2589044_2_fastqc.zip
 ~~~
-{: .output}
 
 Our `.zip` files are compressed files. They each contain multiple 
 different types of output files for a single input FASTQ file. To
@@ -642,10 +603,6 @@ wildcard.
 
 ~~~
 $ unzip *.zip 
-~~~
-{: .bash}
-
-~~~
 Archive:  SRR2584863_1_fastqc.zip
 caution: filename not matched:  SRR2584863_2_fastqc.zip
 caution: filename not matched:  SRR2584866_1_fastqc.zip
@@ -653,7 +610,6 @@ caution: filename not matched:  SRR2584866_2_fastqc.zip
 caution: filename not matched:  SRR2589044_1_fastqc.zip
 caution: filename not matched:  SRR2589044_2_fastqc.zip
 ~~~
-{: .output}
 
 This didn't work. We unzipped the first file and then got a warning
 message for each of the other `.zip` files. This is because `unzip` 
@@ -671,7 +627,6 @@ $ for filename in *.zip
 > unzip $filename
 > done
 ~~~
-{: .bash}
 
 In this example, the input is six filenames (one filename for each of our `.zip` files).
 Each time the loop iterates, it will assign a file name to the variable `filename`
@@ -709,7 +664,6 @@ Archive:  SRR2589044_2_fastqc.zip
   inflating: SRR2589044_2_fastqc/fastqc_data.txt  
   inflating: SRR2589044_2_fastqc/fastqc.fo  
 ~~~
-{: .output}
 
 The `unzip` program is decompressing the `.zip` files and creating
 a new directory (with subdirectories) for each of our samples, to 
@@ -727,7 +681,6 @@ SRR2584863_2_fastqc       SRR2584866_2_fastqc       SRR2589044_2_fastqc
 SRR2584863_2_fastqc.html  SRR2584866_2_fastqc.html  SRR2589044_2_fastqc.html
 SRR2584863_2_fastqc.zip   SRR2584866_2_fastqc.zip   SRR2589044_2_fastqc.zip
 ~~~
-{:. output}
 
 The `.html` files and the uncompressed `.zip` files are still present,
 but now we also have a new directory for each of our samples. We can 
@@ -735,10 +688,6 @@ see for sure that it's a directory if we use the `-F` flag for `ls`.
 
 ~~~
 $ ls -F 
-~~~
-{: .bash}
-
-~~~
 SRR2584863_1_fastqc/      SRR2584866_1_fastqc/      SRR2589044_1_fastqc/
 SRR2584863_1_fastqc.html  SRR2584866_1_fastqc.html  SRR2589044_1_fastqc.html
 SRR2584863_1_fastqc.zip   SRR2584866_1_fastqc.zip   SRR2589044_1_fastqc.zip
@@ -746,28 +695,18 @@ SRR2584863_2_fastqc/      SRR2584866_2_fastqc/      SRR2589044_2_fastqc/
 SRR2584863_2_fastqc.html  SRR2584866_2_fastqc.html  SRR2589044_2_fastqc.html
 SRR2584863_2_fastqc.zip   SRR2584866_2_fastqc.zip   SRR2589044_2_fastqc.zip
 ~~~
-{: .output}
 
 Let's see what files are present within one of these output directories.
 
 ~~~
 $ ls -F SRR2584863_1_fastqc/ 
-~~~
-{: .bash}
-
-~~~
 fastqc_data.txt  fastqc.fo  fastqc_report.html	Icons/	Images/  summary.txt
 ~~~
-{: .output}
 
 Use `less` to preview the `summary.txt` file for this sample. 
 
 ~~~
 $ less SRR2584863_1_fastqc/summary.txt 
-~~~
-{: .bash}
-
-~~~
 PASS    Basic Statistics        SRR2584863_1.fastq
 PASS    Per base sequence quality       SRR2584863_1.fastq
 PASS    Per tile sequence quality       SRR2584863_1.fastq
@@ -780,7 +719,6 @@ PASS    Sequence Duplication Levels     SRR2584863_1.fastq
 PASS    Overrepresented sequences       SRR2584863_1.fastq
 WARN    Adapter Content SRR2584863_1.fastq
 ~~~
-{: .output}
 
 The summary file gives us a list of tests that FastQC ran, and tells
 us whether this sample passed, failed, or is borderline (`WARN`). Remember, to quit from `less` you must type `q`.
@@ -796,13 +734,8 @@ First we have to make the folder `docs`
 
 ~~~
 $ mkdir -p ~/dc_workshop/docs/ 
-~~~
-{: .bash}
-
-~~~
 $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt 
 ~~~
-{: .bash}
 
 > ## Exercise
 > 
@@ -816,10 +749,6 @@ $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 >> ~~~ 
 >> $ cd ~/dc_workshop/docs
 >> $ grep FAIL fastqc_summaries.txt
->> ~~~
->> {: .bash}
->> 
->> ~~~
 >> FAIL    Per base sequence quality       SRR2584863_2.fastq.gz
 >> FAIL    Per tile sequence quality       SRR2584863_2.fastq.gz
 >> FAIL    Per base sequence content       SRR2584863_2.fastq.gz
@@ -833,11 +762,9 @@ $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 >> FAIL    Per base sequence content       SRR2589044_2.fastq.gz
 >> FAIL    Adapter Content SRR2589044_2.fastq.gz
 >> ~~~
->> {: .output}
 >> 
-> {: .solution}
-{: .challenge}
-
+>> 
+>
 
 # Other notes  -- Optional 
 
@@ -853,7 +780,6 @@ $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 > used to generate your data, so that you can tell your quality control program which encoding
 > to use. If you choose the wrong encoding, you run the risk of throwing away good reads or 
 > (even worse) not throwing away bad reads!
-{: .callout}
 
 
 > ## Same Symbols, Different Meanings
@@ -868,7 +794,7 @@ $ cat */summary.txt > ~/dc_workshop/docs/fastqc_summaries.txt
 >
 > If *you* type `>` or `$` yourself, it is an instruction from you that
 > the shell should redirect output or get the value of a variable.
-{: .callout}
+
 
 # Cleaning Reads
 
@@ -890,7 +816,6 @@ Trimmomatic has a variety of options to trim your reads. If we run the following
 ~~~
 $ trimmomatic
 ~~~
-{: .bash}
 
 Which will give you the following output:
 ~~~
@@ -901,7 +826,6 @@ Usage:
    or: 
        -version
 ~~~
-{: .output}
 
 This output shows us that we must first specify whether we have paired end (`PE`) or single end (`SE`) reads.
 Next, we specify what flag we would like to run. For example, you can specify `threads` to indicate the number of
@@ -944,7 +868,6 @@ $ trimmomatic PE -threads 4 SRR_1056_1.fastq SRR_1056_2.fastq  \
               SRR_1056_2.trimmed.fastq SRR_1056_2un.trimmed.fastq \
               ILLUMINACLIP:SRR_adapters.fa SLIDINGWINDOW:4:20
 ~~~
-{: .bash}
 
 In this example, we've told Trimmomatic:
 
@@ -978,7 +901,6 @@ Now we will run Trimmomatic on our data. To begin, navigate to your `untrimmed_f
 ~~~
 $ cd ~/dc_workshop/data/untrimmed_fastq
 ~~~
-{: .bash}
 
 We are going to run Trimmomatic on one of our paired-end samples. 
 While using FastQC we saw that Nextera adapters were present in our samples. 
@@ -987,7 +909,6 @@ The adapter sequences came with the installation of trimmomatic, so we will firs
 ~~~
 $ cp /mnt/linapps/conda3/pkgs/trimmomatic-0.38-0/share/trimmomatic-0.38-0/adapters/NexteraPE-PE.fa .
 ~~~
-{: .bash}
 
 We will also use a sliding window of size 4 that will remove bases if their
 phred score is below 20 (like in our example above). We will also
@@ -1000,8 +921,6 @@ $ trimmomatic PE SRR2589044_1.fastq.gz SRR2589044_2.fastq.gz \
                 SRR2589044_2.trim.fastq.gz SRR2589044_2un.trim.fastq.gz \
                 SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
 ~~~
-{: .bash}
-
 
 ~~~
 TrimmomaticPE: Started with arguments:
@@ -1017,7 +936,6 @@ Quality encoding detected as phred33
 Input Read Pairs: 1107090 Both Surviving: 885220 (79.96%) Forward Only Surviving: 216472 (19.55%) Reverse Only Surviving: 2850 (0.26%) Dropped: 2548 (0.23%)
 TrimmomaticPE: Completed successfully
 ~~~
-{: .output}
 
 > ## Exercise
 >
@@ -1030,8 +948,7 @@ TrimmomaticPE: Completed successfully
 >> ## Solution
 >> 1) 0.23%
 >> 2) 79.96%
-> {: .solution}
-{: .challenge}
+> 
 
 You may have noticed that Trimmomatic automatically detected the
 quality encoding of our sample. It is always a good idea to
@@ -1041,24 +958,15 @@ We can confirm that we have our output files:
 
 ~~~
 $ ls SRR2589044*
-~~~
-{: .bash}
-
-~~~
 SRR2589044_1.fastq.gz       SRR2589044_1un.trim.fastq.gz  SRR2589044_2.trim.fastq.gz
 SRR2589044_1.trim.fastq.gz  SRR2589044_2.fastq.gz         SRR2589044_2un.trim.fastq.gz
 ~~~
-{: .output}
 
 The output files are also FASTQ files. It should be smaller than our
 input file, because we've removed reads. We can confirm this:
 
 ~~~
 $ ls SRR2589044* -l -h
-~~~
-{: .bash}
-
-~~~
 -rw-rw-r-- 1 dcuser dcuser 124M Jul  6 20:22 SRR2589044_1.fastq.gz
 -rw-rw-r-- 1 dcuser dcuser  94M Jul  6 22:33 SRR2589044_1.trim.fastq.gz
 -rw-rw-r-- 1 dcuser dcuser  18M Jul  6 22:33 SRR2589044_1un.trim.fastq.gz
@@ -1066,7 +974,6 @@ $ ls SRR2589044* -l -h
 -rw-rw-r-- 1 dcuser dcuser  91M Jul  6 22:33 SRR2589044_2.trim.fastq.gz
 -rw-rw-r-- 1 dcuser dcuser 271K Jul  6 22:33 SRR2589044_2un.trim.fastq.gz
 ~~~
-{: .output}
 
 
 We've just successfully run Trimmomatic on one of our FASTQ files!
@@ -1080,7 +987,6 @@ We unzipped one of our files before to work with it, let's compress it again bef
 ~~~
 gzip SRR2584863_1.fastq 
 ~~~
-{: .bash}
 
 ~~~
 $ for infile in *_1.fastq.gz
@@ -1092,8 +998,6 @@ $ for infile in *_1.fastq.gz
 >                SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:NexteraPE-PE.fa:2:40:15 
 > done
 ~~~
-{: .bash}
-
 
 Go ahead and run the for loop. It should take a few minutes for
 Trimmomatic to run for each of our six input files. Once it's done
@@ -1101,10 +1005,6 @@ running, take a look at your directory contents. You'll notice that even though 
 
 ~~~
 $ ls
-~~~
-{: .bash}
-
-~~~
 NexteraPE-PE.fa               SRR2584866_1.fastq.gz         SRR2589044_1.trim.fastq.gz
 SRR2584863_1.fastq.gz         SRR2584866_1.trim.fastq.gz    SRR2589044_1un.trim.fastq.gz
 SRR2584863_1.trim.fastq.gz    SRR2584866_1un.trim.fastq.gz  SRR2589044_2.fastq.gz
@@ -1113,7 +1013,6 @@ SRR2584863_2.fastq.gz         SRR2584866_2.trim.fastq.gz    SRR2589044_2un.trim.
 SRR2584863_2.trim.fastq.gz    SRR2584866_2un.trim.fastq.gz
 SRR2584863_2un.trim.fastq.gz  SRR2589044_1.fastq.gz
 ~~~
-{: .output}
 
 > ## Exercise
 > We trimmed our fastq files with Nextera adapters, 
@@ -1124,17 +1023,11 @@ SRR2584863_2un.trim.fastq.gz  SRR2589044_1.fastq.gz
 >> ## Solution
 >> ~~~
 >> $ ls /mnt/linapps/conda3/pkgs/trimmomatic-0.38-0/share/trimmomatic-0.38-0/adapters/
->> ~~~
->> {: .bash}
->>
->> ~~~
 >> NexteraPE-PE.fa  TruSeq2-SE.fa    TruSeq3-PE.fa
 >> TruSeq2-PE.fa    TruSeq3-PE-2.fa  TruSeq3-SE.fa
 >> ~~~
->> {: .output}
 >>
-> {: .solution}
-{: .challenge}
+>
 
 We've now completed the trimming and filtering steps of our quality
 control process! Before we move on, let's move our trimmed FASTQ files
@@ -1146,16 +1039,11 @@ $ mkdir ../trimmed_fastq
 $ mv *.trim* ../trimmed_fastq
 $ cd ../trimmed_fastq
 $ ls
-~~~
-{: .bash}
-
-~~~
 SRR2584863_1.trim.fastq.gz    SRR2584866_1.trim.fastq.gz    SRR2589044_1.trim.fastq.gz
 SRR2584863_1un.trim.fastq.gz  SRR2584866_1un.trim.fastq.gz  SRR2589044_1un.trim.fastq.gz
 SRR2584863_2.trim.fastq.gz    SRR2584866_2.trim.fastq.gz    SRR2589044_2.trim.fastq.gz
 SRR2584863_2un.trim.fastq.gz  SRR2584866_2un.trim.fastq.gz  SRR2589044_2un.trim.fastq.gz
 ~~~
-{: .output}
 
 > ## Bonus Exercise (Advanced)
 >
@@ -1172,7 +1060,6 @@ SRR2584863_2un.trim.fastq.gz  SRR2584866_2un.trim.fastq.gz  SRR2589044_2un.trim.
 >> ~~~
 >> $ fastqc ~/dc_workshop/data/trimmed_fastq/*.fastq*
 >> ~~~
->> {: .bash}
 >>
 >> In a new tab (local computer) in your terminal do:
 >>
@@ -1180,7 +1067,6 @@ SRR2584863_2un.trim.fastq.gz  SRR2584866_2un.trim.fastq.gz  SRR2589044_2un.trim.
 >> $ mkdir ~/Desktop/fastqc_html/trimmed
 >> $ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/data/trimmed_fastq/*.html ~/Desktop/fastqc_html/trimmed
 >> ~~~
->> {: .bash}
 >> 
 >> Then take a look at the html files in your browser.
 >> 
@@ -1193,8 +1079,7 @@ SRR2584863_2un.trim.fastq.gz  SRR2584866_2un.trim.fastq.gz  SRR2589044_2un.trim.
 >> other trimming tools like [cutadapt](http://cutadapt.readthedocs.io/en/stable/) to remove these, depending on your
 >> downstream application. Trimmomatic did pretty well though, and its performance
 >> is good enough for our workflow.
-> {: .solution}
-{: .challenge}
+> 
 
 We mentioned before that we are working with files from a long-term evolution study of an *E. coli* population (designated Ara-3). Now that we have looked at our data to make sure that it is high quality, and removed low-quality base calls, we can perform variant calling to see how the population changed over time. We care how this population changed relative to the original population, *E. coli* strain REL606. Therefore, we will align each of our samples to the *E. coli* REL606 reference genome, and see what differences exist in our reads versus the genome.
 
@@ -1223,7 +1108,6 @@ $ cd ~/dc_workshop
 $ mkdir -p data/ref_genome
 $ cp /mnt/linapps/carpentry/ref_genome/ecoli_rel606.* data/ref_genome/
 ~~~
-{: .bash}
 
 > ## Exercise 
 > 
@@ -1235,12 +1119,10 @@ $ cp /mnt/linapps/carpentry/ref_genome/ecoli_rel606.* data/ref_genome/
 >> ~~~
 >> $ head data/ref_genome/ecoli_rel606.fasta
 >> ~~~
->> {: .bash}
 >> 
 >> The name of the sequence follows the `>` character. The name is `NC_012967.1 Escherichia coli B str. REL606, complete genome`.
 >> Keep this chromosome name (`NC_012967.1`) in mind, as we will use it later in the lesson. 
-> {: .solution}
-{: .challenge}
+>
 
 We will also copy a set of trimmed FASTQ files to work with. These are small subsets of our real trimmed data, 
 and will enable us to run our variant calling workflow quite quickly. 
@@ -1250,7 +1132,6 @@ $ cp /mnt/linapps/carpentry/sub.tar.gz .
 $ tar xvf sub.tar.gz
 $ mv sub/ ~/dc_workshop/data/trimmed_fastq_small
 ~~~
-{: .bash}
 
 You will also need to create directories for the results that will be generated as part of this workflow. We can do this in a single
 line of code, because `mkdir` can accept multiple new directory
@@ -1259,8 +1140,6 @@ names as input.
 ~~~
 $ mkdir -p results/sam results/bam results/bcf results/vcf
 ~~~
-{: .bash}
-
 
 ### Index the reference genome
 Our first step is to index the reference genome for use by BWA. Indexing allows the aligner to quickly find potential alignment sites for query sequences in a genome, which saves time during alignment. Indexing the reference only has to be run once. The only reason you would want to create a new index is if you are working with a different reference genome or you are using a different tool for alignment.
@@ -1268,7 +1147,6 @@ Our first step is to index the reference genome for use by BWA. Indexing allows 
 ~~~
 $ bwa index data/ref_genome/ecoli_rel606.fasta
 ~~~
-{: .bash}
 
 While the index is created, you will see output that looks something like this:
 
@@ -1283,7 +1161,6 @@ While the index is created, you will see output that looks something like this:
 [main] CMD: bwa index data/ref_genome/ecoli_rel606.fasta
 [main] Real time: 1.765 sec; CPU: 1.715 sec
 ~~~
-{: .output}
 
 ### Align reads to reference genome
 
@@ -1296,7 +1173,6 @@ An example of what a `bwa` command looks like is below. This command will not ru
 ~~~
 $ bwa mem ref_genome.fasta input_file_R1.fastq input_file_R2.fastq > output.sam
 ~~~
-{: .bash}
 
 Have a look at the [bwa options page](http://bio-bwa.sourceforge.net/bwa.shtml). While we are running bwa with the default 
 parameters here, your use case might require a change of parameters. *NOTE: Always read the manual page for any tool before using 
@@ -1309,7 +1185,6 @@ iterating this whole process on all of our sample files.
 ~~~
 $ bwa mem data/ref_genome/ecoli_rel606.fasta data/trimmed_fastq_small/SRR2584866_1.trim.sub.fastq data/trimmed_fastq_small/SRR2584866_2.trim.sub.fastq > results/sam/SRR2584866.aligned.sam
 ~~~
-{: .bash}
 
 You will see output that starts like this: 
 
@@ -1325,8 +1200,6 @@ You will see output that starts like this:
 [M::mem_pestat] low and high boundaries for proper pairs: (1, 5836)
 [M::mem_pestat] analyzing insert size distribution for orientation FR...
 ~~~
-{: .output}
-
 
 #### SAM/BAM format
 The [SAM file](https://genome.sph.umich.edu/wiki/SAM),
@@ -1352,13 +1225,10 @@ We will convert the SAM file to BAM format using the `samtools` program with the
 ~~~
 $ samtools view -S -b results/sam/SRR2584866.aligned.sam > results/bam/SRR2584866.aligned.bam
 ~~~
-{: .bash}
 
 ~~~
 [samopen] SAM header is present: 1 sequences.
 ~~~
-{: .output}
-
 
 ### Sort BAM file by coordinates
 
@@ -1367,14 +1237,11 @@ Next we sort the BAM file using the `sort` command from `samtools`. `-o` tells t
 ~~~
 $ samtools sort -o results/bam/SRR2584866.aligned.sorted.bam results/bam/SRR2584866.aligned.bam 
 ~~~
-{: .bash}
 
 Our files are pretty small, so we won't see this output. If you run the workflow with larger files, you will see something like this:
 ~~~
 [bam_sort_core] merging from 2 files...
 ~~~
-{: .output}
-
 
 SAM/BAM files can be sorted in multiple ways, e.g. by location of alignment on the chromosome, by read name, etc. It is important to be aware that different alignment tools will output differently sorted SAM/BAM, and different downstream tools require differently sorted alignment files as input.
 
@@ -1383,7 +1250,6 @@ You can use samtools to learn more about this bam file as well.
 ~~~
 samtools flagstat results/bam/SRR2584866.aligned.sorted.bam
 ~~~
-{: .bash}
 
 This will give you the following statistics about your sorted bam file:
 
@@ -1402,7 +1268,7 @@ This will give you the following statistics about your sorted bam file:
 0 + 0 with mate mapped to a different chr
 0 + 0 with mate mapped to a different chr (mapQ>=5)
 ~~~
-{: .output}
+
 ## Variant calling
 
 A variant call is a conclusion that there is a nucleotide difference vs. some reference at a given position in an individual genome
@@ -1424,12 +1290,10 @@ bcf format output file, `-o` specifies where to write the output file, and `-f` 
 $ bcftools mpileup -O b -o results/bcf/SRR2584866_raw.bcf \
 -f data/ref_genome/ecoli_rel606.fasta results/bam/SRR2584866.aligned.sorted.bam 
 ~~~
-{: .bash}
 
 ~~~
 [mpileup] 1 samples in 1 input files
 ~~~
-{: .output}
 
 We have now generated a file with coverage information for every base.
 
@@ -1440,7 +1304,6 @@ Identify SNPs using bcftools `call`. We have to specify ploidy with the flag `--
 ~~~
 $ bcftools call --ploidy 1 -m -v -o results/bcf/SRR2584866_variants.vcf results/bcf/SRR2584866_raw.bcf 
 ~~~
-{: .bash}
 
 ### Step 3: Filter and report the SNP variants in variant calling format (VCF)
 
@@ -1449,15 +1312,12 @@ Filter the SNPs for the final output in VCF format, using `vcfutils.pl`:
 ~~~
 $ vcfutils.pl varFilter results/bcf/SRR2584866_variants.vcf  > results/vcf/SRR2584866_final_variants.vcf
 ~~~
-{: .bash}
-
 
 ## Explore the VCF format:
 
 ~~~
 $ less -S results/vcf/SRR2584866_final_variants.vcf
 ~~~
-{: .bash}
 
 You will see the header (which describes the format), the time and date the file was
 created, the version of bcftools that was used, the command line parameters used, and 
@@ -1493,7 +1353,6 @@ some additional information:
 ##bcftools_callVersion=1.8+htslib-1.8
 ##bcftools_callCommand=call --ploidy 1 -m -v -o results/bcf/SRR2584866_variants.vcf results/bcf/SRR2584866_raw.bcf; Date=Tue Oct  9 18:48:10 2018
 ~~~
-{: .output}
 
 Followed by information on each of the variations observed: 
 
@@ -1512,7 +1371,6 @@ CP000819.1      56613   .       C       G       183     .       DP=12;VDB=0.8797
 CP000819.1      62118   .       A       G       225     .       DP=19;VDB=0.414981;SGB=-0.691153;MQSB=0.906029;MQ0F=0;AC=1;AN=1;DP4=0,0,8,10;MQ=59
 CP000819.1      64042   .       G       A       225     .       DP=18;VDB=0.451328;SGB=-0.689466;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,7,9;MQ=60      GT:PL
 ~~~
-{: .output}
 
 This is a lot of information, so let's take some time to make sure we understand our output.
 
@@ -1558,17 +1416,12 @@ to learn more about the VCF file format.
 >> 
 >> ~~~
 >> $ grep -v "#" results/vcf/SRR2584866_final_variants.vcf | wc -l
->> ~~~
->> {: .bash}
->> 
->> ~~~ 
 >> 766
 >> ~~~
->> {: .output}
+>>
 >>
 >> There are 766 variants in this file.
-> {: .solution}
-{: .challenge}
+>
 
 ## Assess the alignment (visualization) - optional step
 
@@ -1584,7 +1437,6 @@ In order for us to visualize the alignment files, we will need to index the BAM 
 ~~~
 $ samtools index results/bam/SRR2584866.aligned.sorted.bam
 ~~~
-{: .bash}
 
 ### Viewing with `tview`
 
@@ -1597,7 +1449,6 @@ In order to visualize our mapped reads, we use `tview`, giving it the sorted bam
 ~~~
 $ samtools tview results/bam/SRR2584866.aligned.sorted.bam data/ref_genome/ecoli_rel606.fasta
 ~~~
-{: .bash}
 
 ~~~
 1         11        21        31        41        51        61        71        81        91        101       111       121
@@ -1625,7 +1476,6 @@ AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGCTTCTGAACTG
 .................................... ,,,,,,,,,,,,,,,,,,a,,,,,,,,,,,,,,,,,        ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,  ............................ ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ~~~
-{: .output}
 
 The first line of output shows the genome coordinates in our reference genome. The second line shows the reference
 genome sequence. The third line shows the consensus sequence determined from the sequence reads. A `.` indicates
@@ -1648,13 +1498,11 @@ this box, type the name of the "chromosome" followed by a colon and the position
 >> ~~~
 >> $ samtools tview ~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam ~/dc_workshop/data/ref_genome/ecoli_rel606.fasta
 >> ~~~
->> {: .bash}
 >> 
 >> Then type `g`. In the dialogue box, type `NC_012967.1:4377265`. 
 >> `G` is the variant. `A` is canonical. This variant possibly changes the phenotype of this sample to hypermutable. It occurs
 >> in the gene *mutL*, which controls DNA mismatch repair.
-> {: .solution}
-{: .challenge}
+>
 
 ### Viewing with IGV
 
@@ -1669,20 +1517,18 @@ instead organize files within a directory structure like we've been using in our
 $ mkdir ~/Desktop/files_for_igv
 $ cd ~/Desktop/files_for_igv
 ~~~
-{: .bash}
 
 Now we will transfer our files to that new directory. Remember to replace the text between the `@` and the `:` 
 with your AWS instance number. The commands to `scp` always go in the terminal window that is connected to your
 local computer (not your cloud instance).
 
 ~~~
-$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam ~/Desktop/files_for_igv
-$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam.bai ~/Desktop/files_for_igv
-$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/data/ref_genome/ecoli_rel606.fasta ~/Desktop/files_for_igv
-$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/data/ref_genome/ecoli_rel606.gff ~/Desktop/files_for_igv
-$ scp YOUR-NETID@student-linux.tudelft.nl:~/dc_workshop/results/vcf/SRR2584866_final_variants.vcf ~/Desktop/files_for_igv
+$ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam ~/Desktop/files_for_igv
+$ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/results/bam/SRR2584866.aligned.sorted.bam.bai ~/Desktop/files_for_igv
+$ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/data/ref_genome/ecoli_rel606.fasta ~/Desktop/files_for_igv
+$ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/data/ref_genome/ecoli_rel606.gff ~/Desktop/files_for_igv
+$ scp YOUR-NETID@linux-bastion.tudelft.nl:~/dc_workshop/results/vcf/SRR2584866_final_variants.vcf ~/Desktop/files_for_igv
 ~~~
-{: .bash}
 
 You will need to type the password for your AWS instance each time you call `scp`. 
 
@@ -1726,11 +1572,9 @@ lesson.
 > analyses on your own computer. You'll need to install 
 > the software first. Look at the [setup instructions](http://www.datacarpentry.org/wrangling-genomics/setup.html) for more information 
 > on installing these software packages.
-{: .callout}
 
 > ## BWA Alignment options
 > BWA consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence 
 > reads up to 100bp, while the other two are for sequences ranging from 70bp to 1Mbp. BWA-MEM and BWA-SW share similar features such 
 > as long-read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it 
 > is faster and more accurate. 
-{: .callout}
