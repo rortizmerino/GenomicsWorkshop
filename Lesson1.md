@@ -23,12 +23,11 @@ There are several free options but you should have installed [MobaXterm](https:/
 
 2. Click "Start local terminal” in the middle of the MobaXterm screen
 
-   ![](img/mobaXterm_screenshot_1.png)
+![](img/mobaXterm_screenshot_1.png)
  
 3. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
 
-  ![](img/mobaXterm_screenshot_2.png)  
-
+![](img/mobaXterm_screenshot_2.png)  
 
 ```console
 ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
@@ -37,11 +36,11 @@ ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
 
 4. You might receive a security message that looks something like the message below
 
-    ~~~
-    The authenticity of host 'student-linux.tudelft.nl (131.180.123.205)' can't be established.
-    ECDSA key fingerprint is 1c:24:7c:8b:3c:f9:34:d5:25:02:8a:a6:1b:11:ea:5a.
-    Are you sure you want to continue connecting (yes/no)?
-    ~~~
+~~~
+The authenticity of host 'student-linux.tudelft.nl (131.180.123.205)' can't be established.
+ECDSA key fingerprint is 1c:24:7c:8b:3c:f9:34:d5:25:02:8a:a6:1b:11:ea:5a.
+Are you sure you want to continue connecting (yes/no)?
+~~~
 
 5. Type `yes` to proceed
 
