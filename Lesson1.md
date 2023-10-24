@@ -22,8 +22,12 @@ There are several free options but you should have installed [MobaXterm](https:/
 1. Open MobaXterm
 
 2. Click "Start local terminal” in the middle of the MobaXterm screen
+
+   ![](img/mobaXterm_screenshot_1.png)
  
-3. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
+4. To connect to the TU Delft Linux gateway (linux-bastion.tudelft.nl) Type the following command:
+
+  ![](img/mobaXterm_screenshot_2.png)
 
     ```console
     ssh REPLACE-WITH-YOUR-NETID@linux-bastion.tudelft.nl
@@ -554,7 +558,7 @@ what will `ls ../backup` display?
 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
 4.  `original pnas_final pnas_sub`
 
-![File System for Challenge Questions](../fig/filesystem-challenge.svg)
+![](img/filesystem-challenge.svg)
 
 </summary>
 ## Solution  
@@ -1030,7 +1034,7 @@ characters relate to the permissions that the file owner has, the next three rel
 three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
 that deal with your permissions (as the file owner). 
 
-![Permissions breakdown](../fig/rwx_figure.svg)
+![](img/rwx_figure.svg)
 
 Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w` 
 indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you 
