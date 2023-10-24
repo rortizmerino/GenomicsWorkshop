@@ -424,7 +424,7 @@ using `cd`.
 
 ```console
 $ cd .hidden
-```console
+```
 
 And then list the contents of the directory using `ls`. 
 
@@ -528,13 +528,13 @@ Now go back to the home directory.
 
 ```console
 $ cd
-```console
+```
 
 You can also navigate to the `.hidden` directory using:
 
 ```console
 $ cd shell_data/.hidden
-```console
+```
 
 These two commands have the same effect, they both take us to the `.hidden` directory.
 The first uses the absolute path, giving the full address from the home directory. The
