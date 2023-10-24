@@ -373,7 +373,7 @@ prints the contents of `/home`, which is one level up from your root directory.
 ## Exercise 1
 <details>
 <summary>
-Finding hidden directories
+ Finding hidden directories
 
 First navigate to the `shell_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
 find out how to see hidden directories. List the contents of the directory and 
@@ -515,7 +515,7 @@ path always starts with a `/`. A relative path does not.
 ## Exercise 2
 <details>
 <summary>
-Relative path resolution
+ Relative path resolution
  
 Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
 what will `ls ../backup` display?
@@ -1021,8 +1021,7 @@ you will be asked whether you want to override your permission settings.
 ## Exercise 3
 <details>
  <summary>
-
-Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
+ Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
 1. Make sure that you have deleted your backup directory and all files it contains.  
 2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 learned yet how to do this
@@ -1222,8 +1221,7 @@ four to get the number of sequences that match our search pattern.
 ## Exercise 4
 <details>
  <summary>
-
-How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
+ How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
  
  </summary>
 ## Solution
@@ -1469,7 +1467,6 @@ $ for filename in *.txt
 ## Exercise 6
 <details>
 <summary>
-
  Remove `_2019` from all of the `.txt` files. 
 
 </summary>
