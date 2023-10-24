@@ -622,35 +622,33 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > special permissions which are not discussed here, so it's best to avoid it and work within your home directory.
 
 
-## Exercise 3
-<details>
-<summary>
-We can use the command `echo` to see how the wildcard character is interpreted by the shell.
-
-~~~
-$ echo *.fastq
-SRR097977.fastq SRR098026.fastq
-~~~
-
-The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
-`echo *.fastq` is the same as that of `ls *.fastq`.
-
-What would the output look like if the wildcard could *not* be matched? Compare the outputs of
-`echo *.missing` and `ls *.missing`.
-
-</summary>
-## Solution
-
-~~~
-$ echo *.missing
-*.missing
-~~~
-
-~~~
-$ ls *.missing
-ls: cannot access '*.missing': No such file or directory
-~~~
-</details>
+> ## Exercise 3
+> We can use the command `echo` to see how the wildcard character is interpreted by the shell.
+> 
+> ~~~
+> $ echo *.fastq
+> SRR097977.fastq SRR098026.fastq
+> ~~~
+> 
+> The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
+> `echo *.fastq` is the same as that of `ls *.fastq`.
+> 
+> What would the output look like if the wildcard could *not* be matched? Compare the outputs of
+> `echo *.missing` and `ls *.missing`.
+> 
+> > ## Solution
+> > ~~~
+> > $ echo *.missing
+> > *.missing
+> > ~~~
+> > 
+> > ~~~
+> > $ ls *.missing
+> > ls: cannot access '*.missing': No such file or directory
+> > ~~~
+> >
+> > 
+> 
 
 ## Command History
 
@@ -1020,30 +1018,32 @@ $ rm -r backup
 This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory, 
 you will be asked whether you want to override your permission settings. 
 
-> ## Exercise 7
->
-> Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
-> 1. Make sure that you have deleted your backup directory and all files it contains.  
-> 2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
-> learned yet how to do this
-> with a wildcard.)  
-> 3. Use a wildcard to move all of your backup files to a new backup directory.   
-> 4. Change the permissions on all of your backup files to be write-protected.  
->
-> > ## Solution
-> >
-> > 1. `rm -r backup`  
-> > 2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`  
-> > 3. `mkdir backup` and `mv *-backup.fastq backup`
-> > 4. `chmod -w backup/*-backup.fastq`   
-> > It's always a good idea to check your work with `ls -l backup`. You should see something like: 
-> > 
-> > ~~~
-> > -r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
-> > -r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq
-> > ~~~
-> >
-> 
+## Exercise 3
+<details>
+ <summary>
+
+Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
+1. Make sure that you have deleted your backup directory and all files it contains.  
+2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
+learned yet how to do this
+with a wildcard.)  
+3. Use a wildcard to move all of your backup files to a new backup directory.   
+4. Change the permissions on all of your backup files to be write-protected.  
+
+ </summary>
+## Solution
+
+1. `rm -r backup`  
+2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`  
+3. `mkdir backup` and `mv *-backup.fastq backup`  
+4. `chmod -w backup/*-backup.fastq`   
+It's always a good idea to check your work with `ls -l backup`. You should see something like: 
+
+~~~
+-r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
+-r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq
+~~~
+</details>
 
 ## Searching files
 
