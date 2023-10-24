@@ -127,6 +127,8 @@ L4. GENOME ASSEMBLY AND EVALUATION
 
 ### Shared document
 
+[Google Doc](https://docs.google.com/document/d/1gRSq21KEws3URZA9hhnLO8UhZW0vL3u089yRKJidkzk/edit?usp=sharing)
+
 ### Slides
 
 ### Manuals
