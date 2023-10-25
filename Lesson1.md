@@ -1553,22 +1553,22 @@ One way this is really useful is to move files. Let's rename all of our .txt fil
 $ for filename in *.txt
 > do
 > name=$(basename ${filename} .txt)
-> mv ${filename}  ${name}_2019.txt
+> mv ${filename}  ${name}_2023.txt
 > done
 ```
 
 ## Exercise 6
 <details>
 <summary>
- Remove `_2019` from all of the `.txt` files. 
+ Remove `_2023` from all of the `.txt` files. 
 
 </summary>
 ## Solution
   
 ```console
-$ for filename in *_2019.txt
+$ for filename in *_2023.txt
 > do
-> name=$(basename ${filename} _2019.txt)
+> name=$(basename ${filename} _2023.txt)
 > mv ${filename} ${name}.txt
 > done
 ```
