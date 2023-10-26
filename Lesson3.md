@@ -75,7 +75,7 @@ Open the script with nano and find replace (Alt+R) `~/dc_workshop` with `$ROOT`.
 Add these lines:
 
 ```console
-ROOT=“/scratch/$USER/dc_workshop”
+ROOT="/scratch/$USER/dc_workshop"
 
 source $ROOT/pathsloader
 ```
@@ -223,7 +223,7 @@ Open the script with nano and find replace (Alt+R) `~/dc_workshop` with `$ROOT`.
 Add these lines:
 
 ```console
-ROOT=“/scratch/$USER/dc_workshop”
+ROOT="/scratch/$USER/dc_workshop"
 
 source $ROOT/pathsloader
 ```
@@ -246,7 +246,7 @@ Add lines: (top of the script):
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=1GB
-#SBATCH –-mail-type=ALL
+#SBATCH --mail-type=ALL
 
 
 module load 2022r2
