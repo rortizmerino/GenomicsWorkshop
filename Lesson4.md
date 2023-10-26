@@ -24,7 +24,7 @@ On DelftBlue every user has a scratch folder.
 Copy the folder `asm_workshop` data to your scratch folder.
 
 ```console
-[netid@login ~]$ cp -r /tudelft.net/staff-umbrella/WorkshopsData/asm_workshop .
+[netid@login ~]$ cp -r /tudelft.net/staff-umbrella/WorkshopsData/asm_workshop/ .
 ```
 
 And go into the folder asm_workshop
