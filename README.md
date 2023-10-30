@@ -133,8 +133,8 @@ L4. GENOME ASSEMBLY AND EVALUATION
 
 [Lesson 1](https://drive.google.com/file/d/1OQ7m2jjL0h6ClQlmJ3M08qbP9t854dhL/view?usp=share_link)  
 [Lesson 2](https://drive.google.com/file/d/10Dh6zS_QdjsBsLWZU9Dh8YovUNo0VTDc/view?usp=share_link)  
-[Lesson 3]()  
-[Lesson 4]()  
+[Lesson 3](https://drive.google.com/file/d/1GfazxNApQOrfGWJAeE_9jmpwKIg0koIT/view?usp=drive_link)  
+[Lesson 4](https://drive.google.com/file/d/1JYAWxJItF2JZP5bAwyl3SffPy23ErpIZ/view?usp=drive_link)  
 
 ### Manuals
 
